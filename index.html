@@ -4,34 +4,33 @@
 		<title>LoL Chime- For all your asshole friends who forget to message back in-game</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon" href="images/bardIconAlpha.jpg">
 		
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 		
-		<link rel="stylesheet" href ="css/styles.css">
+		<link rel="stylesheet" href="css/styles.css">
 		 <!-- To achieve a more minimalist design for this essentially one-page web-app, I decided to omit a navbar. -->
 
 		 <!-- jQuery library -->
-		 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js">
-		 </script>
+		 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 
 		 <!-- Latest compiled JavaScript -->
-		 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js">
-		 </script>
+		 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	</head>
 	<body>
 		<header>
-			<img src="images/bard.jpg" alt="A picture of Bard, a champion from league of Legends" title="Take a magical journey with me!"/>
+			<img src="images/bard.jpg" alt="A picture of Bard, a champion from league of Legends" title="Take a magical journey with me!" id="banner"/>
 		</header>
 
 		<section id="queryInput">
-			<h3 id="queryHeader">Enter an in-game summoner's name and get a chime when the summoner is done!</h3>
-			<form class="form-inline">	
-				<input type="text" class="form-control input-lg" id="summonerNameBox"/>
-				<button type="submit" class="btn btn-warning btn-lg">Search</button>
+			<h3 id="queryHeader">Enter an valid in-game summoner's name and get a chime when the summoner is done with the game!</h3>
+			<form class="form-inline" id="queryForm">
+				<img src="images/bardAnimWalk.gif" alt="A gif of Bard, a champion from League of Legends" title="Straight chillin'" id="bardAnim"/>
+				<input type="text" class="form-control input-lg" id="inputBox" pattern=".{3,16}"/>
+				<!--Don't want to restrict it too much because of other regions and their charcodes -->
+				<button type="submit" class="btn btn-warning btn-lg" id="submitButton">Search</button>
 			</form>
 		</section>
-		<section id = "query-result">
-			
-		</section>	
+		<script src="js/script.js"></script>
 	</body>
 </html>

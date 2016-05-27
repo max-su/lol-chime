@@ -11,7 +11,7 @@ header {
 	margin: 0px;
 }
 
-header > img {
+#banner {
 	width: 852px;/*1280*/
 	height: 480px;/*720*/
 	display: block;
@@ -22,19 +22,30 @@ header > img {
 #queryInput {
 	background-color: #793F31;
 	margin: 0px;
-	padding: 1px; /*I have no idea why but without this theres a random white divide */
+	padding: 20px; /*I have no idea why but without this theres a random white divide */
 }
 
 #queryInput *{
-	text-align:center;
+	text-align: center;
 }
+
 #queryHeader {
 	color: #E4BE5B;
 }
 
-#summonerNameBox {
+#inputBox {
 	color: #793F31;
 	width: 350px;
+}
+
+#queryForm *{/*hiding the text input, button, and the bard gif. */
+	display: none;
+	height: 50px;
+}
+
+#bardAnim {
+	height: 60px;/*rewriting the height because the gif is a little bigger */
+	width: 60px;
 }
 
 
