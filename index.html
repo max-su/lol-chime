@@ -4,7 +4,9 @@
 		<title>LoL Chime- For all your asshole friends who forget to message back in-game</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		
 		<link rel="stylesheet" href ="css/styles.css">
 		 <!-- To achieve a more minimalist design for this essentially one-page web-app, I decided to omit a navbar. -->
 
@@ -18,15 +20,14 @@
 	</head>
 	<body>
 		<header>
-			<img src="images/bard.jpg" alt = "A picture of Bard, a champion from league of Legends" title="Take a magical journey with me!"/>
+			<img src="images/bard.jpg" alt="A picture of Bard, a champion from league of Legends" title="Take a magical journey with me!"/>
 		</header>
 
-		<section id = "queryInput">
-			<form action="">	
-				<h3 id="queryHeader">Enter an in-game summoner's name and get a chime when the summoner is done!</h3>
-				<input type="text" id ="summonerNameBox" name="summonerName"/>
-				<!-- Clear the above value with onfocus JS-->
-				<input type="submit" id = "submitBox" name= "search" value="Search"/>
+		<section id="queryInput">
+			<h3 id="queryHeader">Enter an in-game summoner's name and get a chime when the summoner is done!</h3>
+			<form class="form-inline">	
+				<input type="text" class="form-control input-lg" id="summonerNameBox"/>
+				<button type="submit" class="btn btn-warning btn-lg">Search</button>
 			</form>
 		</section>
 		<section id = "query-result">

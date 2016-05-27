@@ -25,7 +25,16 @@ header > img {
 	padding: 1px; /*I have no idea why but without this theres a random white divide */
 }
 
+#queryInput *{
+	text-align:center;
+}
 #queryHeader {
-	text-align: center;
 	color: #E4BE5B;
 }
+
+#summonerNameBox {
+	color: #793F31;
+	width: 350px;
+}
+
+
