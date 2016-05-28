@@ -23,6 +23,11 @@ function getURL(typeOfCall, region, id) {
 	return result;
 }
 
+var URL = getURL("summonerLookUp","NA","Quantum Bogosort");
+console.log(URL + "\n");
+var URL2 = getURL("gameLookUp","NA","20198954");
+console.log(URL2 + "\n");
+
 function getregionID(region) {
 	switch(region){
 		case "BR":
@@ -53,17 +58,17 @@ function getregionID(region) {
 }
 
 
-function getSummonerJSON(summonerName, region, callBack) { //we need to do lookup with summoner ID(an int), not a string
+function getSummoner(summonerName, region, callBack) { //we need to do lookup with summoner ID(an int), not a string
 	request({
 		url: getURL("summonerLookUp", region, summonerName),
 		json: true
 		}, 
 		function (error, response, body) {
 			if(!error && response.statusCode === 200){
-				//console.log(body);
-				callBack(body);
+				callBack(body, error, summonerName, true); //because this is ASynchronous i/o, 
+				
 			} else {
-				console.log("Error: " + Error);
+				callBack(body, error, summonerName, false);
 			}
 		}
 	);
@@ -71,27 +76,24 @@ function getSummonerJSON(summonerName, region, callBack) { //we need to do looku
 }
 
 function cleanSummonerName(summonerName) {
-	var summonerNameJSON = summonerName.replace(" ","");
-	summonerNameJSON = summonerNameJSON.toLowerCase();
-	summonerNameJSON = summonerNameJSON.trim();	
+	var ignTrim = summonerName.replace(" ","");
+	ignTrim = ignTrim.toLowerCase();
+	ignTrim = ignTrim.trim();
+	return ignTrim;
 }
 
-function getSummonerID(summonerName, region) {
-	var summoner = JSON.parse(getSummonerJSON(summonerName, region));
-	cleanIGN = cleanSummonerName(summonerName);
-	return summoner.cleanIGN.id;
-}
+var callBackSummonerID = function(body, error, summonerName, noError) { //summonerJSON must be declared!
+	if(noError === true) {
+		summoner = body;
+		console.log(summoner);
+		ign = cleanSummonerName(summonerName);
+		console.log(summoner[ign].id);
+	}else if(noError === false) {
+		summonerError = error;
+		console.log("Error: " + Error);
+	}
+};
 
-var URL = getURL("summonerLookUp","NA","Quantum Bogosort");
-console.log(URL + "\n");
-var URL2 = getURL("gameLookUp","NA","20198954");
-console.log(URL2 + "\n");
-
-var summonerJSON = {};
-getSummonerJSON("Quantum Bogosort", "NA", function(body) {
-	summonerJSON = body;
-	console.log(summonerJSON);
-});
-//console.log(summonerJSON + "\n");
-//var summonerID = getSummonerID("Quantum Bogosort", "NA");
+var summonerError = {};
+summoner = getSummoner("Quantum Bogosort", "NA", callBackSummonerID);
 
