@@ -1,25 +1,81 @@
-function getSummonerID(summonerName) { //we need to do lookup with summoner ID(an int), not a string
-	return "";
-}
+require("dotenv").config(); //keep api key in .env
+var $ = require('jquery');
 
 /*USAGE
  *typeOfCall = summonerLookup OR gameLookup
  *region = na, eu, etc.
- *
+ *id = summonerName OR summonerID
  */
-function getURL(typeOfCall, region, id) { //id can be summonerName or summonerIntValue
-	string result = "https://" + region + ".api.pvp.net/api/lol/" + region + "/";
-	// at this point we should have something like https://na.api.pvp.net/api/lol/na/
+function getURL(typeOfCall, region, id) { 
+	result = "https://" + region + ".api.pvp.net/";
+	// at this point we should have something like https://na.api.pvp.net/
 	// do /version/whateverAPIQuery
 	switch(typeOfCall){
-		case summonerLookup:
-			result += "v1.4/summoner/by-name/" + id	+ "?" + "api_key=" + APIKEY;
-			//https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/quantum bogosort?api_key=7d2ef177-a3d5-4636-b6ad-bddfd75cec22	
-			//https://euw.api.pvp.net/api/lol/euw/v1.4/summoner/by-name/quantum bogosort?api_key=7d2ef177-a3d5-4636-b6ad-bddfd75cec22
+		case "summonerLookUp":
+			result += "api/lol/" + region + "/v1.4/summoner/by-name/";
 			break;
-		case gameLookup:
-			result += ""
+		case "gameLookUp":
+			result += "observer-mode/rest/consumer/getSpectatorGameInfo/" + getregionID(region)+ "/";
 			break;
 	}
+	result += id + "?api_key=" + process.env.APIKEY;
 	return result;
 }
+
+function getregionID(region) {
+	switch(region){
+		case "BR":
+			return "BR1";
+		case "EUNE":
+			return "EUN1";
+		case "EUW":
+			return "EUW1";
+		case "JP":
+			return "JP1";
+		case "KR":
+			return "KR";
+		case "LAN":
+			return "LA1";
+		case "LAS":
+			return "LA2";
+		case "NA":
+			return "NA1";
+		case "OCE":
+			return "OC1";
+		case "TR":
+			return "TR1";
+		case "RU":
+			return "RU";
+		default:
+			return "Error!";
+	}
+}
+
+function cleanSummonerName(summonerName) {
+	var summonerNameJSON = summonerName.replace(" ","");
+	summonerNameJSON = summonerNameJSON.toLowerCase();
+	summonerNameJSON = summonerNameJSON.trim();	
+}
+
+function getSummonerID(summonerName, region) { //we need to do lookup with summoner ID(an int), not a string
+	$.ajax({
+		url: getURL("summonerLookUp",region,summonerName),
+		type: "GET",
+		dataType: "json",
+		data: {},
+		success: function (json) {
+			return json[cleanSummonerName(summonerName)].id;
+		},
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
+			process.stdout.write("Error!");
+		}
+	});	
+}
+
+var URL = getURL("summonerLookUp","NA","Quantum Bogosort");
+process.stdout.write(URL + "\n");
+var URL2 = getURL("gameLookUp","NA","20198954");
+process.stdout.write(URL2 + "\n");
+
+var ID = getSummonerID("Quantum Bogosort", "NA");
+process.stdout.write(ID + "\n");

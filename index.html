@@ -6,8 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="icon" href="images/bardIconAlpha.jpg">
 		
-		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-		
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">	
 		<link rel="stylesheet" href="css/styles.css">
 		 <!-- To achieve a more minimalist design for this essentially one-page web-app, I decided to omit a navbar. -->
 
@@ -27,10 +26,21 @@
 			<form class="form-inline" id="queryForm">
 				<img src="images/bardAnimWalk.gif" alt="A gif of Bard, a champion from League of Legends" title="Straight chillin'" id="bardAnim"/>
 				<input type="text" class="form-control input-lg" id="inputBox" pattern=".{3,16}"/>
-				<!--Don't want to restrict it too much because of other regions and their charcodes -->
+				<!--Don't want to restrict it too much because of other regions and their charcodes 
+				<div class="btn-group">
+					<button type="button" class="btn btn-secondary dropdown-toggle btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Region
+					</button>
+					<ul class="dropdown-menu">
+						<li><a href="#">Action</a></li>
+						<li><a href="#">Another action</a></li>
+					</ul>
+				</div>
+				-->
 				<button type="submit" class="btn btn-warning btn-lg" id="submitButton">Search</button>
 			</form>
 		</section>
 		<script src="js/script.js"></script>
+		<script src="js/serverScript.js"></script>
 	</body>
 </html>

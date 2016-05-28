@@ -29,6 +29,7 @@ header {
 	text-align: center;
 }
 
+
 #queryHeader {
 	color: #E4BE5B;
 }
@@ -38,14 +39,15 @@ header {
 	width: 350px;
 }
 
-#queryForm *{/*hiding the text input, button, and the bard gif. */
-	display: none;
+/*#queryForm> *{/*hiding the text input, button, and the bard gif. */
+#inputBox, #submitButton, .btn-group {
 	height: 50px;
 }
 
 #bardAnim {
 	height: 60px;/*rewriting the height because the gif is a little bigger */
 	width: 60px;
+	display: none;
 }
 
 
