@@ -22,7 +22,7 @@ header {
 #queryInput {
 	background-color: #793F31;
 	margin: 0px;
-	padding: 20px; /*I have no idea why but without this theres a random white divide */
+	padding: 25px; /*I have no idea why but without this theres a random white divide */
 }
 
 #queryInput *{
@@ -40,13 +40,13 @@ header {
 }
 
 /*#queryForm> *{/*hiding the text input, button, and the bard gif. */
-#inputBox, #submitButton, .btn-group {
+#inputBox, #submitButton, .dropdown-toggle {
 	height: 50px;
 }
 
 #bardAnim {
-	height: 60px;/*rewriting the height because the gif is a little bigger */
-	width: 60px;
+	height: 50px;/*rewriting the height because the gif is a little bigger */
+	width: 50px;
 	display: none;
 }
 

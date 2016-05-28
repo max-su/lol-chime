@@ -22,21 +22,31 @@
 		</header>
 
 		<section id="queryInput">
-			<h3 id="queryHeader">Enter an valid in-game summoner's name and get a chime when the summoner is done with the game!</h3>
+			<h4 id="queryHeader">Enter an valid in-game summoner's name and get a chime when the summoner is done with the game!</h3>
 			<form class="form-inline" id="queryForm">
 				<img src="images/bardAnimWalk.gif" alt="A gif of Bard, a champion from League of Legends" title="Straight chillin'" id="bardAnim"/>
-				<input type="text" class="form-control input-lg" id="inputBox" pattern=".{3,16}"/>
-				<!--Don't want to restrict it too much because of other regions and their charcodes 
+				<input type="text" class="form-control input-lg" id="inputBox" pattern=".{3,16}" maxlength="16"/>
+				<!--Don't want to restrict it too much because of other regions and their charcodes --> 
 				<div class="btn-group">
-					<button type="button" class="btn btn-secondary dropdown-toggle btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<button type="button" class="btn btn-secondary btn-info dropdown-toggle btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					Region
 					</button>
 					<ul class="dropdown-menu">
-						<li><a href="#">Action</a></li>
-						<li><a href="#">Another action</a></li>
+						<li><a href="#">NA</a></li>
+						<li><a href="#">BR</a></li>
+						<li><a href="#">EUNE</a></li>
+						<li><a href="#">EUW</a></li>
+						<li><a href="#">JP</a></li>
+						<li><a href="#">KR</a></li>
+						<li><a href="#">LAN</a></li>
+						<li><a href="#">LAS</a></li>
+						<li><a href="#">NA</a></li>
+						<li><a href="#">OCE</a></li>
+						<li><a href="#">TR</a></li>
+						<li><a href="#">RU</a></li>
 					</ul>
 				</div>
-				-->
+				<!---->
 				<button type="submit" class="btn btn-warning btn-lg" id="submitButton">Search</button>
 			</form>
 		</section>
