@@ -3,26 +3,30 @@ require("dotenv").config(); //keep api key in .env
 var request = require("request");
 var sleep = require("sleep");
 var http = require("http");
+var port = 8081;
 
-/*USAGE
+
+var handleRequest = function (request, response) { //handler function for requests, and responses.
+	response.end("It works. Path hit: " + request.url);
+};
+var server = http.createServer(handleRequest); 
+
+var callBackServer = function () { //executes when server.listen is successful
+    console.log("Server listening on: http://localhost:" +  port);
+};
+server.listen(port, callBackServer); //server is listening on this PORT, callBackServer is a function that executes when this is successful.
+
+
+
+//____API STUFF FOLLOWS_________________________________________________
+
+/*USAGE for getUrl(typeOfCall, region, id)
  *typeOfCall = summonerLookup OR gameLookup
  *region = na, eu, etc.
  *id = summonerName OR summonerID
  */
 
-var PORT = 8080;
-var handleRequest = function (request, response){
-	response.end("It works. Path hit: " + request.url);
-};
 
-var server = http.createServer(handleRequest);
-
-server.listen(PORT, function() {
-		console.log("Server listening on: http://localhost:%s", PORT);
-	}
-);
-
-//____API STUFF FOLLOWS
 var getUrl = function (typeOfCall, region, id) { 
 	result = "https://" + region + ".api.pvp.net/";
 	// at this point we should have something like https://na.api.pvp.net/
@@ -174,9 +178,7 @@ var checkSummonerInGame = function (id, region, callBackFunctions, firstTimeQuer
 		},
 		function (error, response, body) {
 			if(!error && response.statusCode === 200) { //GAME FOUND
-				
-				console.log(body);
-				
+				console.log(body);				
 			}else if(!error && response.statusCode === 404) { //NO GAME FOUND
 				console.log(body);
 			}else {

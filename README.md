@@ -1,2 +1,11 @@
 # lol-chime
-A web-app serving the League of Legends community that takes names of in-game summoners and notifies the user with a ding when their friends are out of the game.
+Summary
+--------
+A web-app serving the League of Legends community and notifies them when their friends are finished with their game. 
+  
+Use
+--------
+Users can enter a summoner name, choose a region in an html form, and submit it and receive a notification when their friend finishes the game.
+
+
+
