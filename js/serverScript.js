@@ -1,12 +1,13 @@
 require("dotenv").config(); //keep api key in .env
-
+var events = require("events");
+var http = require("http");
+var dispatcher = require("httpdispatcher");
 var request = require("request");
 var sleep = require("sleep");
-var http = require("http");
 var port = 8081;
 
 
-var handleRequest = function (request, response) { //handler function for requests, and responses.
+var handleRequest = function (request, response) { //handler function for the server
 	response.end("It works. Path hit: " + request.url);
 };
 var server = http.createServer(handleRequest); 
@@ -195,6 +196,6 @@ var nameNotFoundDoStuff = function (){
 };
 
 
-
+//TEST EXECUTION
 var callBackFunctionList = [callBackSummonerID, checkSummonerInGame, nameNotFoundDoStuff];
 summonerID = getSummonerID("Quantum Bogosort", "NA", callBackFunctionList);
