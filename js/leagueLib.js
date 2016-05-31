@@ -5,32 +5,6 @@ var request = require("request");
 
 
 module.exports = {}; 
-/*
-var handleRequest = function (request, response) { //handler function for the server
-    try {
-	    response.end("It works. Path hit: " + request.url);
-        dispatcher.dispatch(request, response);
-    }catch (err) { 
-        console.log(err);
-    }
-
-};
-var server = http.createServer(handleRequest); 
-
-var callBackServer = function () { //executes when server.listen is successful
-    console.log("Server listening on: http://localhost:" +  port);
-};
-server.listen(port, callBackServer); //server is listening on this PORT, callBackServer is a function that executes when this is successful.
-
-dispatcher.setStatic("resources");
-dispatcher.onGet("/page1", function(request, response) {
-        response.writeHead(200, {"Content-Type":"text-plain"});
-        response.end("Page One");
-    }
-);
-*/
-
-
 
 //____API STUFF FOLLOWS_________________________________________________
 
@@ -146,17 +120,17 @@ OOOOO \\,oo8888ooo,,******,o888,
 		  ok ur brain will turn into putty in 2 lines.
 FIRST FUNCTION IN CALLBACK HELL*/
 
-module.exports.getSummonerID = function (summonerName, region, callBackFunctions) { //we need to do lookup with summoner ID(an int), not a string
+module.exports.getSummonerJSON = function (summonerName, region) { //we need to do lookup with summoner ID(an int), not a string
 	request({
 		url: getUrl("summonerLookUp", region, summonerName),
 		json: true
 		}, 
 		function (error, response, body) {
 			if(!error && response.statusCode === 200) {
-				callBackFunctions[0](body, error, summonerName, true, region, callBackFunctions); //because this is ASynchronous i/o, 			
+				module.exports.callBackSummonerID(body, error, summonerName, true, region); //because this is ASynchronous i/o, 			
 				//callBackSummonerID
 			}else {
-				callBackFunctions[0](body, error, summonerName, false, region, callBackFunctions);
+				module.exports.callBackSummonerID(body, error, summonerName, false, region);
 				//callBackSummonerID
 			}
 		}		
@@ -164,22 +138,21 @@ module.exports.getSummonerID = function (summonerName, region, callBackFunctions
 };
 
 //callBackFunctions[0]
-module.exports.callBackSummonerID = function (body, error, summonerName, noError, region, callBackFunctions) { //summonerJSON must be declared!
+module.exports.callBackSummonerID = function (body, error, summonerName, noError, region) { //summonerJSON must be declared!
 	if(noError === true) {
 		summoner = body;
 		console.log(summoner);	
 		id = summoner[cleanSummonerName(summonerName)].id;
-		callBackFunctions[1](id, region, callBackFunctions, false); 
-		//checkSummonerInGame
+		module.exports.checkSummonerInGame(id, region, false); 
+        //emit event summoner ID found
 	}else if(noError === false) {
-		summonerError = error;
+        //emit event error
 		console.log("Error: " + Error);
-		callBackFunctions[2]();
 	}
 };
 
 //callBackFunctions[1]
-module.exports.checkSummonerInGame = function (id, region, callBackFunctions, firstTimeQuery){
+module.exports.checkSummonerInGame = function (id, region, firstTimeQuery){
 	console.log(id);
 	request({
 		url: getUrl("gameLookUp", region, id),
@@ -198,16 +171,4 @@ module.exports.checkSummonerInGame = function (id, region, callBackFunctions, fi
 	);
 };
 
-//callBackFunctions[2]
-module.exports.nameNotFoundDoStuff = function (){
-	
-
-};
-
-
-module.exports.callBackFunctionList = [module.exports.callBackSummonerID, 
-                                       module.exports.checkSummonerInGame, 
-                                       module.exports.nameNotFoundDoStuff];
-//at the moment i just chain it all to the checkSummonerInGame if it gets that far.
 //summonerID = getSummonerID("Quantum Bogosort", "NA", callBackFunctionList);
-
