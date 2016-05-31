@@ -1,13 +1,10 @@
 require("dotenv").config(); //keep api key in .env
-var express = require("express");
+//var express = require("express");
 var events = require("events");
-//var http = require("http");
-//var dispatcher = require("httpdispatcher");
 var request = require("request");
-var sleep = require("sleep");
 
 
-module.exports = {}; //exports references same object as module.exports
+module.exports = {}; 
 /*
 var handleRequest = function (request, response) { //handler function for the server
     try {
@@ -43,7 +40,6 @@ dispatcher.onGet("/page1", function(request, response) {
  *id = summonerName OR summonerID
  */
 
-
 var getUrl = function (typeOfCall, region, id) { 
 	result = "https://" + region + ".api.pvp.net/";
 	// at this point we should have something like https://na.api.pvp.net/
@@ -59,12 +55,7 @@ var getUrl = function (typeOfCall, region, id) {
 	result += id + "?api_key=" + process.env.APIKEY;
 	return result;
 };
-/*
-var URL = getURL("summonerLookUp","NA","Quantum Bogosort");
-console.log(URL + "\n");
-var URL2 = getURL("gameLookUp","NA","20198954");
-console.log(URL2 + "\n");
-*/
+
 var cleanSummonerName = function (summonerName) {
 	var ignTrim = summonerName.replace(" ","");
 	ignTrim = ignTrim.toLowerCase();
@@ -198,6 +189,7 @@ module.exports.checkSummonerInGame = function (id, region, callBackFunctions, fi
 			if(!error && response.statusCode === 200) { //GAME FOUND
 				console.log(body);				
 			}else if(!error && response.statusCode === 404) { //NO GAME FOUND
+                console.log("error");
 				console.log(body);
 			}else {
 				console.log(error);	
