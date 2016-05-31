@@ -1,12 +1,6 @@
 require("dotenv").config(); //keep api key in .env
-//var express = require("express");
 var events = require("events");
 var request = require("request");
-
-
-module.exports = {}; 
-
-//____API STUFF FOLLOWS_________________________________________________
 
 /*USAGE for getUrl(typeOfCall, region, id)
  *typeOfCall = summonerLookup OR gameLookup
@@ -120,6 +114,7 @@ OOOOO \\,oo8888ooo,,******,o888,
 		  ok ur brain will turn into putty in 2 lines.
 FIRST FUNCTION IN CALLBACK HELL*/
 
+module.exports = {}; 
 module.exports.getSummonerJSON = function (summonerName, region) { //we need to do lookup with summoner ID(an int), not a string
 	request({
 		url: getUrl("summonerLookUp", region, summonerName),
@@ -137,7 +132,6 @@ module.exports.getSummonerJSON = function (summonerName, region) { //we need to 
 	);
 };
 
-//callBackFunctions[0]
 module.exports.callBackSummonerID = function (body, error, summonerName, noError, region) { //summonerJSON must be declared!
 	if(noError === true) {
 		summoner = body;
@@ -151,7 +145,6 @@ module.exports.callBackSummonerID = function (body, error, summonerName, noError
 	}
 };
 
-//callBackFunctions[1]
 module.exports.checkSummonerInGame = function (id, region, firstTimeQuery){
 	console.log(id);
 	request({
