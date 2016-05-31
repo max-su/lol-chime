@@ -1,14 +1,22 @@
 require("dotenv").config(); //keep api key in .env
+var express = require("express");
 var events = require("events");
-var http = require("http");
-var dispatcher = require("httpdispatcher");
+//var http = require("http");
+//var dispatcher = require("httpdispatcher");
 var request = require("request");
 var sleep = require("sleep");
-var port = 8081;
 
 
+module.exports = {}; //exports references same object as module.exports
+/*
 var handleRequest = function (request, response) { //handler function for the server
-	response.end("It works. Path hit: " + request.url);
+    try {
+	    response.end("It works. Path hit: " + request.url);
+        dispatcher.dispatch(request, response);
+    }catch (err) { 
+        console.log(err);
+    }
+
 };
 var server = http.createServer(handleRequest); 
 
@@ -16,6 +24,14 @@ var callBackServer = function () { //executes when server.listen is successful
     console.log("Server listening on: http://localhost:" +  port);
 };
 server.listen(port, callBackServer); //server is listening on this PORT, callBackServer is a function that executes when this is successful.
+
+dispatcher.setStatic("resources");
+dispatcher.onGet("/page1", function(request, response) {
+        response.writeHead(200, {"Content-Type":"text-plain"});
+        response.end("Page One");
+    }
+);
+*/
 
 
 
@@ -138,7 +154,8 @@ OOOOO \\,oo8888ooo,,******,o888,
           V''V'     
 		  ok ur brain will turn into putty in 2 lines.
 FIRST FUNCTION IN CALLBACK HELL*/
-var getSummonerID = function (summonerName, region, callBackFunctions) { //we need to do lookup with summoner ID(an int), not a string
+
+module.exports.getSummonerID = function (summonerName, region, callBackFunctions) { //we need to do lookup with summoner ID(an int), not a string
 	request({
 		url: getUrl("summonerLookUp", region, summonerName),
 		json: true
@@ -156,7 +173,7 @@ var getSummonerID = function (summonerName, region, callBackFunctions) { //we ne
 };
 
 //callBackFunctions[0]
-var callBackSummonerID = function (body, error, summonerName, noError, region, callBackFunctions) { //summonerJSON must be declared!
+module.exports.callBackSummonerID = function (body, error, summonerName, noError, region, callBackFunctions) { //summonerJSON must be declared!
 	if(noError === true) {
 		summoner = body;
 		console.log(summoner);	
@@ -171,7 +188,7 @@ var callBackSummonerID = function (body, error, summonerName, noError, region, c
 };
 
 //callBackFunctions[1]
-var checkSummonerInGame = function (id, region, callBackFunctions, firstTimeQuery){
+module.exports.checkSummonerInGame = function (id, region, callBackFunctions, firstTimeQuery){
 	console.log(id);
 	request({
 		url: getUrl("gameLookUp", region, id),
@@ -190,12 +207,15 @@ var checkSummonerInGame = function (id, region, callBackFunctions, firstTimeQuer
 };
 
 //callBackFunctions[2]
-var nameNotFoundDoStuff = function (){
+module.exports.nameNotFoundDoStuff = function (){
 	
 
 };
 
 
-//TEST EXECUTION
-var callBackFunctionList = [callBackSummonerID, checkSummonerInGame, nameNotFoundDoStuff];
-summonerID = getSummonerID("Quantum Bogosort", "NA", callBackFunctionList);
+module.exports.callBackFunctionList = [module.exports.callBackSummonerID, 
+                                       module.exports.checkSummonerInGame, 
+                                       module.exports.nameNotFoundDoStuff];
+//at the moment i just chain it all to the checkSummonerInGame if it gets that far.
+//summonerID = getSummonerID("Quantum Bogosort", "NA", callBackFunctionList);
+
