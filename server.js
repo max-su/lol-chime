@@ -2,7 +2,6 @@ var express = require("express");
 var leagueLib = require("./leagueLib");
 var url = require("url");
 //at the moment i just chain it all to the checkSummonerInGame if it gets that far.
-var summonerID = leagueLib.getSummonerJSON("Quantum Bogosort", "NA");
 var app = express();
 app.set("port", 3000);
 

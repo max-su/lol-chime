@@ -1,5 +1,5 @@
 require("dotenv").config(); //keep api key in .env
-var EventEmitter = require("events");
+var EventEmitter = require("events").EventEmitter;
 var request = require("request");
 
 /*USAGE for getUrl(typeOfCall, region, id)
@@ -63,29 +63,32 @@ var getRegionID = function (region) {
 
 module.exports = {}; 
 
-//class summonerEmitter extends EventEmitter {}
-//summoner = new summonerEmitter();
+summonerEmitter = new EventEmitter();
+summonerEmitter.state = "notFound";
 
+//the above step is nto necessary for initialization but makes me feel better about wtf im writing
 module.exports.getSummonerID = function (summonerName, region) { //we need to do lookup with summoner ID(an int), not a string
     request({
 	    url: getUrl("summonerLookUp", region, summonerName),
 	    json: true
 	    }, 
 	    function (error, response, body) {
+                    summonerEmitter.region = region;
 		if(!error && response.statusCode === 200) {
-                    console.log(body);
                     var id = body[cleanSummonerName(summonerName)].id;
-                    module.exports.checkSummonerInGame(id, region, false); 
+                    summonerEmitter.id = id;
+                    summonerEmitter.state = "found";
+                    summonerEmitter.emit("IDFound");
 		}
                 else {
-		    //module.exports.callBackSummonerID(body, error, summonerName, false, region);
-		    //callBackSummonerID
+                    summonerEmitter.state = "notFound";
+                    summonerEmitter.emit("IDNotFound");
 		}
 	    }		
 	);
 };
 
-module.exports.checkSummonerInGame = function (id, region, firstTimeQuery){
+module.exports.checkSummonerInGame = function(id, region) {
     console.log(id);
     request({
 	url: getUrl("gameLookUp", region, id),
@@ -94,16 +97,28 @@ module.exports.checkSummonerInGame = function (id, region, firstTimeQuery){
 	function (error, response, body) {
 	    if(!error && response.statusCode === 200) { //GAME FOUND
 		console.log(body);				
+                summonerEmitter.emit("GameFound");
 	    }
             else if(!error && response.statusCode === 404) { //NO GAME FOUND
                 console.log("Game not found");
-		console.log(body);
+                summonerEmitter.emit("GameNotFound");
 	    }
             else {
-		console.log(error);	
+		summonerEmitter.emit("The world exploded");
 	    }
 	}
     );
 };
 
-summonerID = module.exports.getSummonerID("Quantum Bogosort", "NA");
+summonerEmitter.on("IDFound", function() {
+        module.exports.checkSummonerInGame(summonerEmitter.id, summonerEmitter.region);
+    }
+);
+
+summonerEmitter.on("GameFound", function() {
+        module.exports.checkSummonerInGame(summonerEmitter.id, summonerEmitter.region);  
+    }
+);
+
+module.exports.getSummonerID("Quantum Bogosort", "NA");
+
