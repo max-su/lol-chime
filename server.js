@@ -6,6 +6,7 @@ var summonerID = leagueLib.getSummonerJSON("Quantum Bogosort", "NA");
 var app = express();
 app.set("port", 3000);
 
+//setting pathing & querystring
 app.get("/", function(req, res) {
         res.type("text/plain");
         res.send("LoL-Chime main homepage woo");
