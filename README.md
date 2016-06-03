@@ -10,16 +10,20 @@ Users can enter a summoner name, choose a region in an html form, and submit it 
 Dependencies
 --------
 
-*   npm install dotenv --save
+*   npm install dotenv `
 *   npm install events
-*   npm install http
-*   npm install httpdispatcher
 *   npm install request
+*   npm install express
+*   npm install url
 *   Riot Games API key in /js/.env
    
 Directory Structure
 --------
-*   HTML in /
-*   Client Side JS & Node.js in /js
-*   CSS in /css
-*   Image assets in /images
+*   HTML in /public
+*   Client Side JS in /public/js
+*   CSS in public/css
+*   Image assets in public/images
+
+Current Implementation/Design Issues
+--------
+[Link to problems I've found while implementing and designing this webapp out](docs/issues.md)
