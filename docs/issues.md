@@ -14,7 +14,7 @@ Potential Solutions/Design
     3. Found&NotInGame (getSummonerID 200 & checkSummonerInGame 404) 
     4. Found&InGame (getSummonerID 200 & checkSummonerInGame 200)
     5. Finished (checkSummonerInGame now 404's) 
-*       Diagram as shown: ![FSM](/FSM.png "FSM")
+*       Diagram as shown: ![FSM](/docs/FSM.png "FSM")
 
 Networking
 -------
