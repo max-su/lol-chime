@@ -4,7 +4,6 @@ var url = require("url");
 //at the moment i just chain it all to the checkSummonerInGame if it gets that far.
 var summonerID = leagueLib.getSummonerJSON("Quantum Bogosort", "NA");
 var app = express();
-
 app.set("port", 3000);
 
 app.get("/", function(req, res) {
@@ -18,10 +17,11 @@ app.get("/poll", function(req, res) {
         var name = query.name;
         var region = query.region;
         res.send("The name is: " + name + "\nThe region is " + region);
-        console.log(summonerID);
     }
 );
 
+//in Express, the order in which routes and middleware are added is significant.
+app.use(express.static("public"));
 app.use(function (req, res){
         res.type("text/plain");
         res.status(404);
@@ -36,11 +36,11 @@ app.use(function (err, req, res, next){
         res.send("500 - Server error");
     }
 );
-                
+
+    //serving webpage static content
 
 app.listen(app.get("port"), function(){
-        console.log("Express started on http://localhost:" +
-                    app.get("port") + "; press Ctrl-C to terminate.");    
+        console.log("Express started on http://localhost:" + app.get("port") + "; press Ctrl-C to terminate.");    
     }
 );
 
