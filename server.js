@@ -1,5 +1,6 @@
 var express = require("express");
-var leagueLib = require("./leagueLib");
+var leagueLib = require("./leagueJS/leagueLib");
+var SummonerEmitter = require("./leagueJS/summonerEmitter");
 var url = require("url");
 //at the moment i just chain it all to the checkSummonerInGame if it gets that far.
 var app = express();
@@ -20,9 +21,8 @@ app.get("/poll", function(req, res) {
     }
 );
 
-//in Express, the order in which routes and middleware are added is significant.
 app.use(express.static("public"));
-app.use(function (req, res){
+app.use(function (req, res){ //we put this after this get/use because the order in which routes and middlewhere are added is significant
         res.type("text/plain");
         res.status(404);
         res.send("404 - Not Found");
@@ -37,11 +37,7 @@ app.use(function (err, req, res, next){
     }
 );
 
-    //serving webpage static content
-
-app.listen(app.get("port"), function(){
+app.listen(app.get("port"), function() {
         console.log("Express started on http://localhost:" + app.get("port") + "; press Ctrl-C to terminate.");    
     }
 );
-
-
