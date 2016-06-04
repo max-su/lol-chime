@@ -5,12 +5,12 @@ A web-app serving the League of Legends community and notifies them when their f
   
 Use
 --------
-Users can enter a summoner name, choose a region in an html form, and submit it and receive an audio notification when their friend finishes the game.
+Users can enter a summoner name, choose a region in an HTML form, and submit it and receive an audio notification when their friend finishes the game.
 
 Dependencies
 --------
 
-*   npm install dotenv `
+*   npm install dotenv 
 *   npm install events
 *   npm install request
 *   npm install express
@@ -23,6 +23,8 @@ Directory Structure
 *   Client Side JS in /public/js
 *   CSS in public/css
 *   Image assets in public/images
+*   Node.JS User Modules in /leagueJS
+*   More documentation in /docs
 
 Current Implementation/Design Issues
 --------
