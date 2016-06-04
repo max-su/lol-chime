@@ -1,8 +1,28 @@
-Issues
+What Is Functional
 -------
-*       One of the issues I found while implementing this was that node.js is async so it doesn't always execute in sequential order, I couldn't exactly structure it synchronously like I could it basically every other language I wrote in before.
-*      Trying to fix 
+*       The ability to query more than one summoner at once and track their in-game status until they get out of the game.
+*       The below code will start tracking two summoners and keep tracking until both of them finish the game.
+```javascript
+summonerTest = new SummonerEmitter("ConstantFighting", "NA");
+summonerTest2 = new SummonerEmitter("xKurayami", "NA");
+leagueLib.initializeEvents(summonerTest);
+leagueLib.initializeEvents(summonerTest2);
+```
+*       The express server although it doesn't really do much but serve my static assets right now.
 
+What Isn't Functional
+-------
+*       I need a way to allow the client to make a request to my server start tracking summoners, and allow clients to make a SummonerEmitter job with a GET/POST request.
+*       I also need a way to track if clients disconnect, the server removes their job (thus saving on API calls)
+*       I need the client to be able to make GET Requests to my server so that they can see the status of their SummonerEmitter 
+*       Not sure if the above one is best implemented with a GET(Not sure if there is any better way to do this)
+
+What Could Be Done Better
+-------
+*       I'm not sure if there's a better approach to what I'm currently doing, there isn't any Event Listener that would ping me when the user is done with the game.
+*       My current implementation just pings every 30 seconds, this could be optimized as in most normal games. The average game doesn't end until the 30m mark.
+*       In most cases I shouldn't even start pinging until around 15m.
+*       Differentiate between Normal/Customs SR/TT to know how often I should ping and when I should start pinging.
 
 Potential Solutions/Design
 -------
@@ -14,17 +34,15 @@ Potential Solutions/Design
     4. Found&NotInGame (getSummonerID 200 & checkSummonerInGame 404) 
     5. Found&InGame (getSummonerID 200 & checkSummonerInGame 200)
     6. Finished (checkSummonerInGame now 404's) 
+*       This FSM concept will be implemented with Event Emitters & CallBacks.
 *       Diagram as shown: ![FSM](/docs/FSM.png "FSM")
 
 Networking & Connecting With the Client
 -------
-*       Tie each username/region to a GET query, provide them with a status of the user and follow the FSM.
-    0. Begin tracking summoners that are GET queried.
-    1. How do I make a new summonerEmitter object when a username/region is queried, when one is already made I shouldn't make a new one.
-    2. Have to figure out how to architect the above this Express someonehow
+*       Tie each username/region to a GET query, provide them with a status of the user and follow the FSM model.
+    1. Begin tracking summoners who are queried initially
+    2. Tell the client if the query was acceptable, IGN200=>GAME200, client side sees a div with the tracker info.
+    3. Have the client side keep a variable that their query was found, and continually check the server every 30s.
+    4. If State5 = true and we go into State 6, audio chime should activate.
 *       State2, State3, and State4 should all tell the client side webpage that an error has occurred.
 *       The client side should deal with this by making a div or whatever appear with an error message.
-*       When State5 is found, have it continually run every 30seconds.
-*       Have the Client side have a variable like State5 = True the first time state5 is found, a div pops up with the current game info and a chime thing that will pop later.
-*       When the currentGame 404's and we go into State6 from State5, have the audio chime ring in the div from State5.
- 
