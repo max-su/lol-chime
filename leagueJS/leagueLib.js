@@ -58,23 +58,25 @@ var getRegionID = function (region) {
     }
 };
 
-module.exports.getSummonerID = function (SEArg) { //SEArg == SummonerEmitterArg
-    request({
-        url: getUrl("summonerLookUp", SEArg.getRegion(), SEArg.getName()),
-        json: true //parses json string automatically into a js object
-        }, 
-        function (error, response, body) {
-            if(!error && response.statusCode === 200) {
-                var name = SEArg.getName();
-                var id = body[cleanSummonerName(name)].id;
-                SEArg.setID(id);
-                SEArg.setEmitState("ID Found");
-            }
-            else {
-                SEArg.setEmitState("ID Not Found");
-            }
-        }		
-    );
+module.exports.checkSummonerExists = function (SEArg) { //SEArg == SummonerEmitterArg
+    if(SEArg instanceof SummonerEmitter){
+        request({
+            url: getUrl("summonerLookUp", SEArg.getRegion(), SEArg.getName()),
+            json: true //parses json string automatically into a js object
+            }, 
+            function (error, response, body) {
+                if(!error && response.statusCode === 200) {
+                    var name = SEArg.getName();
+                    var id = body[cleanSummonerName(name)].id;
+                    SEArg.setID(id);
+                    SEArg.setEmitState("ID Found");
+                }
+                else {
+                    SEArg.setEmitState("ID Not Found");
+                }
+            }		
+        );
+    }
 };
 
 module.exports.checkSummonerInGame = function(SEArg) {
@@ -90,24 +92,32 @@ module.exports.checkSummonerInGame = function(SEArg) {
                 }, 30000); //callBack emit this in 30seconds.
             }
             else if(!error && response.statusCode === 404) { //NO GAME FOUND
+                console.log("Game Not Found");
                 SEArg.setEmitState("Game Not Found");
             }
             else {
+                console.log("Server Sucks");
                 SEArg.setEmitState("Server Sucks");
             }
         }
     );
 };
 
-summonerTest = new SummonerEmitter("clg imaqtpie69", "NA");
-module.exports.setOn = function (SEArg){
-    SEArg.on("IDFound", function() {
-            module.exports.checkSummonerInGame(summonerEmitter.id, summonerEmitter.region);
+module.exports.initializeEvents = function (SEArg){
+    SEArg.on("Not Initialized", function() {
+            module.exports.checkSummonerExists(SEArg);
         }
     );
-    SEArg.on("GameFound", function() {
-            module.exports.checkSummonerInGame(summonerEmitter.id, summonerEmitter.region);  
+    SEArg.on("ID Found", function() {
+            module.exports.checkSummonerInGame(SEArg);
         }
     );
+    SEArg.on("Game Found", function() {
+            module.exports.checkSummonerInGame(SEArg);  
+        }
+    );
+    SEArg.emit("Not Initialized");
 };
 
+summonerTest = new SummonerEmitter("ConstantFighting", "NA");
+module.exports.initializeEvents(summonerTest);

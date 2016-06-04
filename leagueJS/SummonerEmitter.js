@@ -11,26 +11,36 @@ function SummonerEmitter(name, region){
 
 util.inherits(SummonerEmitter, EventEmitter); //inherit the prototype methods from EventEmitter to summonerEmitter
 SummonerEmitter.prototype = Object.create(EventEmitter.prototype);
-SummonerEmitter.constructor = summonerEmitter;
+SummonerEmitter.constructor = SummonerEmitter;
 
 SummonerEmitter.prototype.getName = function() {
     return this.name;
 };
+
 SummonerEmitter.prototype.getRegion = function() {
     return this.region;
 };
-SummonerEmitter.prototype.setID = function(ID){
+
+SummonerEmitter.prototype.setID = function(ID) {
     this.ID = ID;
 };
-SummonerEmitter.prototype.getID = function(){
+
+SummonerEmitter.prototype.getID = function() {
     if(this.ID === 0){
         console.log("There is an error, ID is not set.");
     }
     return this.ID;
 };
-SummonerEmitter.prototype.setState = function(state){
+
+SummonerEmitter.prototype.setState = function(state) {
     this.state = state;
 };
+
+SummonerEmitter.prototype.setEmitState = function(state) {
+    this.state = state;
+    this.emit(state);
+};
+
 SummonerEmitter.prototype.getState = function(){
     if(this.state === ""){
         console.log("There is an error, state is not set.");
