@@ -9,56 +9,56 @@ var request = require("request");
  */
 
 var getUrl = function (typeOfCall, region, id) { 
-	result = "https://" + region + ".api.pvp.net/";
-	// at this point we should have something like https://na.api.pvp.net/
-	// do /version/whateverAPIQuery
-	switch(typeOfCall){
-		case "summonerLookUp":
-			result += "api/lol/" + region + "/v1.4/summoner/by-name/";
-			break;
-		case "gameLookUp":
-			result += "observer-mode/rest/consumer/getSpectatorGameInfo/" + getRegionID(region)+ "/";
-			break;
-	}
-	result += id + "?api_key=" + process.env.APIKEY;
-	return result;
+    result = "https://" + region + ".api.pvp.net/";
+    // at this point we should have something like https://na.api.pvp.net/
+    // do /version/whateverAPIQuery
+    switch(typeOfCall){
+            case "summonerLookUp":
+                    result += "api/lol/" + region + "/v1.4/summoner/by-name/";
+                    break;
+            case "gameLookUp":
+                    result += "observer-mode/rest/consumer/getSpectatorGameInfo/" + getRegionID(region)+ "/";
+                    break;
+    }
+    result += id + "?api_key=" + process.env.APIKEY;
+    return result;
 };
 
 var cleanSummonerName = function (summonerName) {
-	var ignTrim = summonerName.replace(" ","");
-	ignTrim = ignTrim.toLowerCase();
-	ignTrim = ignTrim.trim();
-	return ignTrim;
+    var ignTrim = summonerName.replace(" ","");
+    ignTrim = ignTrim.toLowerCase();
+    ignTrim = ignTrim.trim();
+    return ignTrim;
 };
 
 
 var getRegionID = function (region) {
-	switch(region) {
-		case "BR":
-			return "BR1";
-		case "EUNE":
-			return "EUN1";
-		case "EUW":
-			return "EUW1";
-		case "JP":
-			return "JP1";
-		case "KR":
-			return "KR";
-		case "LAN":
-			return "LA1";
-		case "LAS":
-			return "LA2";
-		case "NA":
-			return "NA1";
-		case "OCE":
-			return "OC1";
-		case "TR":
-			return "TR1";
-		case "RU":
-			return "RU";
-		default:
-			return "Error!";
-	}
+    switch(region) {
+            case "BR":
+                    return "BR1";
+            case "EUNE":
+                    return "EUN1";
+            case "EUW":
+                    return "EUW1";
+            case "JP":
+                    return "JP1";
+            case "KR":
+                    return "KR";
+            case "LAN":
+                    return "LA1";
+            case "LAS":
+                    return "LA2";
+            case "NA":
+                    return "NA1";
+            case "OCE":
+                    return "OC1";
+            case "TR":
+                    return "TR1";
+            case "RU":
+                    return "RU";
+            default:
+                    return "Error!";
+    }
 };
 
 module.exports = {}; 
@@ -97,7 +97,9 @@ module.exports.checkSummonerInGame = function(id, region) {
 	function (error, response, body) {
 	    if(!error && response.statusCode === 200) { //GAME FOUND
 		console.log(body);				
-                summonerEmitter.emit("GameFound");
+                setTimeout(function() {
+                    summonerEmitter.emit("GameFound");
+                    }, 30000);
 	    }
             else if(!error && response.statusCode === 404) { //NO GAME FOUND
                 console.log("Game not found");
@@ -120,5 +122,5 @@ summonerEmitter.on("GameFound", function() {
     }
 );
 
-module.exports.getSummonerID("Quantum Bogosort", "NA");
+module.exports.getSummonerID("3ofSpades", "NA");
 
