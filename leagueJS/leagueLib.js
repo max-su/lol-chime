@@ -120,4 +120,6 @@ module.exports.initializeEvents = function (SEArg){
 };
 
 summonerTest = new SummonerEmitter("ConstantFighting", "NA");
+summonerTest2 = new SummonerEmitter("xKurayami", "NA");
 module.exports.initializeEvents(summonerTest);
+module.exports.initializeEvents(summonerTest2);
