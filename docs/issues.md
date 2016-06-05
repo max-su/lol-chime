@@ -3,10 +3,81 @@ What Is Functional
 *       The ability to query more than one summoner at once and track their in-game status until they get out of the game.
 *       The below code will start tracking two summoners and keep tracking until both of them finish the game.
 ```javascript
-summonerTest = new SummonerEmitter("ConstantFighting", "NA");
-summonerTest2 = new SummonerEmitter("xKurayami", "NA");
+summonerTest = new SummonerEmitter("aleete", "NA");
+summonerTest2 = new SummonerEmitter("USC Takazok", "NA");
 leagueLib.initializeEvents(summonerTest);
 leagueLib.initializeEvents(summonerTest2);
+```
+*	Result
+```json
+EventEmitter {
+  domain: null,
+  _events: 
+   { 'Not Initialized': [Function],
+     'ID Found': [Function],
+     'Game Found': [Function] },
+  _eventsCount: 3,
+  _maxListeners: undefined,
+  name: 'aleete',
+  region: 'NA',
+  ID: 42809511,
+  state: 'ID Found',
+  gameLength: 1061,
+  gameMode: 'CLASSIC',
+  gameType: 'MATCHED_GAME',
+  init: true,
+  gameStartTime: 1465109908416 }
+EventEmitter {
+  domain: null,
+  _events: 
+   { 'Not Initialized': [Function],
+     'ID Found': [Function],
+     'Game Found': [Function] },
+  _eventsCount: 3,
+  _maxListeners: undefined,
+  name: 'USC Takazok',
+  region: 'NA',
+  ID: 20115777,
+  state: 'ID Found',
+  gameLength: 360,
+  gameMode: 'CLASSIC',
+  gameType: 'MATCHED_GAME',
+  init: true,
+  gameStartTime: 1465110609188 }
+EventEmitter {
+  domain: null,
+  _events: 
+   { 'Not Initialized': [Function],
+     'ID Found': [Function],
+     'Game Found': [Function] },
+  _eventsCount: 3,
+  _maxListeners: undefined,
+  name: 'aleete',
+  region: 'NA',
+  ID: 42809511,
+  state: 'Game Found',
+  gameLength: 1092,
+  gameMode: 'CLASSIC',
+  gameType: 'MATCHED_GAME',
+  init: true,
+  gameStartTime: 1465109908416 }
+EventEmitter {
+  domain: null,
+  _events: 
+   { 'Not Initialized': [Function],
+     'ID Found': [Function],
+     'Game Found': [Function] },
+  _eventsCount: 3,
+  _maxListeners: undefined,
+  name: 'USC Takazok',
+  region: 'NA',
+  ID: 20115777,
+  state: 'Game Found',
+  gameLength: 391,
+  gameMode: 'CLASSIC',
+  gameType: 'MATCHED_GAME',
+  init: true,
+  gameStartTime: 1465110609188 }
 ```
 *       The express server although it doesn't really do much but serve my static assets right now.
 

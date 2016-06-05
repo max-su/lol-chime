@@ -1,6 +1,6 @@
 var express = require("express");
 var leagueLib = require("./leagueJS/leagueLib");
-var SummonerEmitter = require("./leagueJS/summonerEmitter");
+var SummonerEmitter = require("./leagueJS/SummonerEmitter");
 var url = require("url");
 //at the moment i just chain it all to the checkSummonerInGame if it gets that far.
 var app = express();
@@ -22,6 +22,7 @@ app.get("/poll", function(req, res) {
 );
 
 app.use(express.static("public"));
+
 app.use(function (req, res){ //we put this after this get/use because the order in which routes and middlewhere are added is significant
         res.type("text/plain");
         res.status(404);

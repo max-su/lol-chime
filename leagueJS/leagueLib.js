@@ -86,7 +86,11 @@ module.exports.checkSummonerInGame = function(SEArg) {
         },
         function (error, response, body) {
             if(!error && response.statusCode === 200) { //GAME FOUND
-                console.log(body);				
+                if(SEArg.getInit() === false){
+                    SEArg.setInitial(body.gameMode, body.gameType, body.gameStartTime);
+                }
+                SEArg.setGameLength(body.gameLength);
+                console.log(SEArg);
                 setTimeout(function() {
                     SEArg.setEmitState("Game Found");
                 }, 30000); //callBack emit this in 30seconds.
@@ -119,7 +123,7 @@ module.exports.initializeEvents = function (SEArg){
     SEArg.emit("Not Initialized");
 };
 
-summonerTest = new SummonerEmitter("ConstantFighting", "NA");
-summonerTest2 = new SummonerEmitter("xKurayami", "NA");
+summonerTest = new SummonerEmitter("USC Takazok", "NA");
+summonerTest2 = new SummonerEmitter("aleete", "NA");
 module.exports.initializeEvents(summonerTest);
 module.exports.initializeEvents(summonerTest2);
