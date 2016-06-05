@@ -29,3 +29,5 @@ Directory Structure
 Current Implementation/Design Issues
 --------
 [Link to problems I've found while implementing and designing this webapp out](docs/issues.md)
+FSM Diagram of general control flow on a query: ![FSM](/docs/FSM.png "FSM")
+
