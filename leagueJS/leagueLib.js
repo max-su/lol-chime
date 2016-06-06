@@ -120,10 +120,10 @@ module.exports.initializeEvents = function (SEArg){
             module.exports.checkSummonerInGame(SEArg);  
         }
     );
-    SEArg.emit("Not Initialized");
+    SEArg.emit("Not Initialized");//could be made more efficient, dont have to listen for Not init  and just start checkSummonerExists.
 };
 
-summonerTest = new SummonerEmitter("USC Takazok", "NA");
-summonerTest2 = new SummonerEmitter("aleete", "NA");
+summonerTest = new SummonerEmitter("xAkajika", "NA");
+summonerTest2 = new SummonerEmitter("Andy hyung", "NA");
 module.exports.initializeEvents(summonerTest);
 module.exports.initializeEvents(summonerTest2);

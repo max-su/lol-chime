@@ -26,11 +26,11 @@ Directory Structure
 *   Node.JS User Modules in /leagueJS
 *   More documentation in /docs
 
-Current Implementation/Design Issues
---------
-[Link to problems I've found while implementing and designing this webapp out](docs/issues.md)
-
 FSM Diagram of Query Control Flow
 -------
  ![FSM](/docs/FSM.png "FSM")
+
+Current Implementation/Design Issues
+--------
+[Link to problems I've found while implementing and designing this webapp out](docs/issues.md)
 

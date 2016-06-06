@@ -48,6 +48,7 @@ SummonerEmitter.prototype.getState = function() {
     return this.ID;
 };
 
+//the below are all static with the exception of game Length which is the only one that should be updated.
 SummonerEmitter.prototype.setGameLength = function(gameLength) {
     this.gameLength = gameLength;
 };
@@ -82,7 +83,7 @@ SummonerEmitter.prototype.getInit = function() { //static; so we dont keep initi
 SummonerEmitter.prototype.setInitial = function(gameMode, gameType, gameStartTime) {
     this.gameMode = gameMode; 
     this.gameType = gameType;
-    this.gameStartTime = gameStartTime;
+    this.gameStartTime = new Date().valueOf(gameStartTime); //conversion from epoch milliseconds to human readable
     this.init = true;
 };
 /*
