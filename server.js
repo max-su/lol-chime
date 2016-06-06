@@ -6,10 +6,11 @@ var url = require("url");
 var app = express();
 app.set("port", 3000);
 
+app.use(express.static("public"));
+
 //setting pathing & querystring
 app.get("/", function(req, res) {
-        res.type("text/plain");
-        res.send("LoL-Chime main homepage woo");
+        res.sendFile("public/index.html")
     }
 );
 
@@ -20,8 +21,6 @@ app.get("/poll", function(req, res) {
         res.send("The name is: " + name + "\nThe region is " + region);
     }
 );
-
-app.use(express.static("public"));
 
 app.use(function (req, res){ //we put this after this get/use because the order in which routes and middlewhere are added is significant
         res.type("text/plain");
@@ -39,6 +38,6 @@ app.use(function (err, req, res, next){
 );
 
 app.listen(app.get("port"), function() {
-        console.log("Express started on http://localhost:" + app.get("port") + "; press Ctrl-C to terminate.");    
+        console.log("Express started on http://localhost:" + app.get("port") + "; press Ctrl-C to terminate.");
     }
 );
