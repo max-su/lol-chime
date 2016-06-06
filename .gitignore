@@ -9,7 +9,8 @@ Session.vim
 # auto-generated tag files
 tags
 
-
+# api key
+.env
 
 # Logs
 logs
