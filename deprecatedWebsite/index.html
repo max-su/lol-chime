@@ -1,56 +1,55 @@
 <!DOCTYPE html>
 <html lang="en-US">
-	<head>
-		<title>LoL Chime- For all your asshole friends who forget to message back in-game</title>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="icon" href="images/bardIconAlpha.jpg">
-		
-		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">	
-		<link rel="stylesheet" href="css/styles.css">
-		 <!-- To achieve a more minimalist design for this essentially one-page web-app, I decided to omit a navbar. -->
+    <head>
+        <title>LoL Chime- For all your asshole friends who forget to message back in-game</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="images/bardIconAlpha.jpg">
 
-		 <!-- jQuery library -->
-		 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/styles.css">
+        <!-- To achieve a more minimalist design for this essentially one-page web-app, I decided to omit a navbar. -->
 
-		 <!-- Latest compiled JavaScript -->
-		 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	</head>
-	<body>
-		<header>
-			<img src="images/bard.jpg" alt="A picture of Bard, a champion from league of Legends" title="Take a magical journey with me!" id="banner"/>
-		</header>
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 
-		<section id="queryInput">
-			<h4 id="queryHeader">Enter an valid in-game summoner's name and get a chime when the summoner is done with the game!</h3>
-			<form class="form-inline" id="queryForm">
-				<img src="images/bardAnimWalk.gif" alt="A gif of Bard, a champion from League of Legends" title="Straight chillin'" id="bardAnim"/>
-				<input type="text" class="form-control input-lg" id="inputBox" pattern=".{3,16}" maxlength="16"/>
-				<!--Don't want to restrict it too much because of other regions and their charcodes --> 
-				<div class="btn-group">
-					<button type="button" class="btn btn-secondary btn-info dropdown-toggle btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					Region
-					</button>
-					<ul class="dropdown-menu">
-						<li><a href="#">NA</a></li>
-						<li><a href="#">BR</a></li>
-						<li><a href="#">EUNE</a></li>
-						<li><a href="#">EUW</a></li>
-						<li><a href="#">JP</a></li>
-						<li><a href="#">KR</a></li>
-						<li><a href="#">LAN</a></li>
-						<li><a href="#">LAS</a></li>
-						<li><a href="#">NA</a></li>
-						<li><a href="#">OCE</a></li>
-						<li><a href="#">TR</a></li>
-						<li><a href="#">RU</a></li>
-					</ul>
-				</div>
-				<!---->
-				<button type="submit" class="btn btn-warning btn-lg" id="submitButton">Search</button>
-			</form>
-		</section>
-		<script src="js/script.js"></script>
-		<script src="js/serverScript.js"></script>
-	</body>
+        <!-- Latest compiled JavaScript -->
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <header>
+            <img src="images/bard.jpg" alt="A picture of Bard, a champion from league of Legends" title="Take a magical journey with me!" id="banner"/>
+        </header>
+
+        <section id="queryInput">
+            <h4 id="queryHeader">Enter an valid in-game summoner's name and get a chime when the summoner is done with the game!</h3>
+            <form class="form-inline" id="queryForm">
+                <img src="images/bardAnimWalk.gif" alt="A gif of Bard, a champion from League of Legends" title="Straight chillin'" id="bardAnim"/>
+                <input type="text" class="form-control input-lg" id="inputBox" pattern=".{3,16}" maxlength="16"/>
+                <!--Don't want to restrict it too much because of other regions and their charcodes -->
+                <div class="btn-group">
+                    <button type="button" class="btn btn-secondary btn-info dropdown-toggle btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Region
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">NA</a></li>
+                        <li><a href="#">BR</a></li>
+                        <li><a href="#">EUNE</a></li>
+                        <li><a href="#">EUW</a></li>
+                        <li><a href="#">JP</a></li>
+                        <li><a href="#">KR</a></li>
+                        <li><a href="#">LAN</a></li>
+                        <li><a href="#">LAS</a></li>
+                        <li><a href="#">NA</a></li>
+                        <li><a href="#">OCE</a></li>
+                        <li><a href="#">TR</a></li>
+                        <li><a href="#">RU</a></li>
+                    </ul>
+                </div>
+                <!---->
+                <button type="submit" class="btn btn-warning btn-lg" id="submitButton">Search</button>
+            </form>
+        </section>
+        <script src="js/script.js"></script>
+    </body>
 </html>
