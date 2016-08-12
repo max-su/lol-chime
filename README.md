@@ -17,15 +17,6 @@ Dependencies
 *   npm install url
 *   Riot Games API key in /js/.env
    
-Directory Structure
---------
-*   HTML in /public
-*   Client Side JS in /public/js
-*   CSS in public/css
-*   Image assets in public/images
-*   Node.JS User Modules in /leagueJS
-*   More documentation in /docs
-
 FSM Diagram of Query Control Flow
 -------
  ![FSM](/docs/FSM.png "FSM")
