@@ -5,23 +5,27 @@ A terminal utility serving the League of Legends community and notifies them whe
   
 Use
 --------
-Users can enter a summoner name, choose a region in an HTML form, and submit it and receive an audio notification when their friend finishes the game.
+Run in a terminal
+```
+node chime.js
+```
+Please keep in mind that Live Game data for 'Bot' cannot be retrieved from Riot’s official API.
 
 Dependencies
 --------
 
 *   Open up terminal and run
-'''
+```
 npm install
-'''
+```
 *   Sign in on your league of legends account on [the Riot Games developer portal](https://developer.riotgames.com/sign-in).
 *   In the repository's root directory, do
-'''
+```
 vim ./leagueLib/.env.example
-'''
-*   and replace '''<%= FILL IN API KEY HERE %>''' with your api key.
+```
+*   and replace ```<%= FILL IN API KEY HERE %>``` with your api key.
 *   finally copy over the example to the actual .env
-''' cp ./leagueLib/.env.example ./leagueLib/.env '''
+``` cp ./leagueLib/.env.example ./leagueLib/.env ```
    
 FSM Diagram of Query Control Flow
 -------

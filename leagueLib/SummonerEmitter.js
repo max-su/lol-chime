@@ -50,7 +50,7 @@ SummonerEmitter.prototype.getState = function() {
 
 //the below are all static with the exception of game Length which is the only one that should be updated.
 SummonerEmitter.prototype.setGameLength = function(gameLength) {
-    this.gameLength = gameLength;
+    this.gameLength = gameLength / 60;
 };
 SummonerEmitter.prototype.getGameLength = function() {
     if(this.gameLength === 0) {
@@ -66,13 +66,13 @@ SummonerEmitter.prototype.getGameMode = function() { //static
 };
 SummonerEmitter.prototype.getGameType = function() { //static
     if(this.gameType === "") {
-        console.log("There is an error, gameMode is not set.");
+        console.log("There is an error, gameType is not set.");
     }
     return this.gameType;
 };
 SummonerEmitter.prototype.getGameStartTime = function() {//static
     if(this.gameStartTime === 0){
-        console.log("There is an error, gameMode is not set.");
+        console.log("There is an error, gameStartTime is not set.");
     }
     return this.gameStartTime;
 };
@@ -87,7 +87,11 @@ SummonerEmitter.prototype.setInitial = function(gameMode, gameType, gameStartTim
 };
 
 SummonerEmitter.prototype.printSummary = function() {
-    console.log("Requested IGN: " + SEArg.getName() + "\n" +
-                "Requested Region: " + SEArg.getRegion() + "\n");
+    console.log("Requested IGN: " + this.getName() + "\n" +
+                "Requested Region: " + this.getRegion() + "\n");
+    if(this.getInit() === true){
+        console.log("Game Start Time: " + this.getGameStartTime() + "\n");
+        console.log("The Game's total length was: " + this.getGameLength() + " minutes. \n");
+    }
 };
 module.exports = SummonerEmitter;

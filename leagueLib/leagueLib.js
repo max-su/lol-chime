@@ -87,6 +87,7 @@ module.exports.checkSummonerInGame = function(SEArg) {
         function (error, response, body) {
             if(!error && response.statusCode === 200) { //GAME FOUND
                 if(SEArg.getInit() === false){
+                    SEArg.printSummary();
                     SEArg.setInitial(body.gameMode, body.gameType, body.gameStartTime);
                     //So we dont keep reInitializing these variables.
                 }
@@ -100,7 +101,6 @@ module.exports.checkSummonerInGame = function(SEArg) {
                 SEArg.setEmitState("Game Not Found");
             }
             else {
-                console.log("Server Sucks idk mang");
                 SEArg.setEmitState("Server Sucks");
             }
         }
@@ -117,7 +117,8 @@ module.exports.initializeEvents = function (SEArg){
         }
     );
     SEArg.on("ID Not Found", function() {
-        console.log("A Summoner was not found matching the IGN " + SEArg.getName() + " in the " + SEArg.getRegion() + " region.");
+        SEArg.printSummary();
+        console.log("A Summoner was not found matching this");
         }
     );
     SEArg.on("Game Found", function() {
@@ -125,8 +126,12 @@ module.exports.initializeEvents = function (SEArg){
         }
     );
     SEArg.on("Game Not Found",function() {
-        console.log("Requested IGN: " + SEArg.getName() + "\n" +
-                    "Requested Region: " + SEArg.getRegion() + "\n");
+        if(SEArg.getInit() === true){
+            console.log("=====================================================" + "\n");
+            SEArg.printSummary();
+            console.log("The game has concluded for the above player.");             
+        }
+        SEArg.printSummary();
         console.log("A game has not been found.");
 
         }
