@@ -79,16 +79,15 @@ SummonerEmitter.prototype.getGameStartTime = function() {//static
 SummonerEmitter.prototype.getInit = function() { //static; so we dont keep initializing
     return this.init; 
 };
-
 SummonerEmitter.prototype.setInitial = function(gameMode, gameType, gameStartTime) {
     this.gameMode = gameMode; 
     this.gameType = gameType;
     this.gameStartTime = new Date().valueOf(gameStartTime); //conversion from epoch milliseconds to human readable
     this.init = true;
 };
-/*
-SummonerEmitter.prototype.nextCallBackTime(){
-    
-}
-*/
+
+SummonerEmitter.prototype.printSummary = function() {
+    console.log("Requested IGN: " + SEArg.getName() + "\n" +
+                "Requested Region: " + SEArg.getRegion() + "\n");
+};
 module.exports = SummonerEmitter;

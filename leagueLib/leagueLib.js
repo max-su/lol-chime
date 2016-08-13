@@ -88,19 +88,19 @@ module.exports.checkSummonerInGame = function(SEArg) {
             if(!error && response.statusCode === 200) { //GAME FOUND
                 if(SEArg.getInit() === false){
                     SEArg.setInitial(body.gameMode, body.gameType, body.gameStartTime);
+                    //So we dont keep reInitializing these variables.
                 }
                 SEArg.setGameLength(body.gameLength);
-                console.log(SEArg);
+                //This is the only thing we're updating, how long the game is.
                 setTimeout(function() {
                     SEArg.setEmitState("Game Found");
                 }, 30000); //callBack emit this in 30seconds.
             }
             else if(!error && response.statusCode === 404) { //NO GAME FOUND
-                console.log("Game Not Found");
                 SEArg.setEmitState("Game Not Found");
             }
             else {
-                console.log("Server Sucks");
+                console.log("Server Sucks idk mang");
                 SEArg.setEmitState("Server Sucks");
             }
         }
@@ -109,21 +109,30 @@ module.exports.checkSummonerInGame = function(SEArg) {
 
 module.exports.initializeEvents = function (SEArg){
     SEArg.on("Not Initialized", function() {
-            module.exports.checkSummonerExists(SEArg);
+        module.exports.checkSummonerExists(SEArg);
         }
     );
     SEArg.on("ID Found", function() {
-            module.exports.checkSummonerInGame(SEArg);
+        module.exports.checkSummonerInGame(SEArg);    
+        }
+    );
+    SEArg.on("ID Not Found", function() {
+        console.log("A Summoner was not found matching the IGN " + SEArg.getName() + " in the " + SEArg.getRegion() + " region.");
         }
     );
     SEArg.on("Game Found", function() {
-            module.exports.checkSummonerInGame(SEArg);  
+        module.exports.checkSummonerInGame(SEArg);  
+        }
+    );
+    SEArg.on("Game Not Found",function() {
+        console.log("Requested IGN: " + SEArg.getName() + "\n" +
+                    "Requested Region: " + SEArg.getRegion() + "\n");
+        console.log("A game has not been found.");
+
         }
     );
     SEArg.emit("Not Initialized");//could be made more efficient, dont have to listen for Not init  and just start checkSummonerExists.
 };
 
-summonerTest = new SummonerEmitter("xAkajika", "NA");
-summonerTest2 = new SummonerEmitter("Andy hyung", "NA");
+summonerTest = new SummonerEmitter("Quantum Bogosort", "NA");
 module.exports.initializeEvents(summonerTest);
-module.exports.initializeEvents(summonerTest2);
