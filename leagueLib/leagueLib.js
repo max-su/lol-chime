@@ -138,6 +138,3 @@ module.exports.initializeEvents = function (SEArg){
     );
     SEArg.emit("Not Initialized");//could be made more efficient, dont have to listen for Not init  and just start checkSummonerExists.
 };
-
-summonerTest = new SummonerEmitter("Quantum Bogosort", "NA");
-module.exports.initializeEvents(summonerTest);
