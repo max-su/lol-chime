@@ -8,7 +8,7 @@ module.exports = {}; //prepping exports
  *id = summonerName OR summonerID
  */
 
-var getUrl = function (typeOfCall, region, id) { 
+var getUrl = function (typeOfCall, region, id) {
     result = "https://" + region + ".api.pvp.net/";
     switch(typeOfCall){
         case "summonerLookUp":
@@ -54,16 +54,20 @@ var getRegionID = function (region) {
         case "RU":
             return "RU";
         default:
-            return "Error!";
+            return null;
     }
 };
+
+module.exports.cleanSummonerName = cleanSummonerName;
+module.exports.getUrl = getUrl;
+module.exports.getRegionID = getRegionID;
 
 module.exports.checkSummonerExists = function (SEArg) { //SEArg == SummonerEmitterArg
     if(SEArg instanceof SummonerEmitter){
         request({
             url: getUrl("summonerLookUp", SEArg.getRegion(), SEArg.getName()),
             json: true //parses json string automatically into a js object
-            }, 
+            },
             function (error, response, body) {
                 if(!error && response.statusCode === 200) {
                     var name = SEArg.getName();
@@ -74,7 +78,7 @@ module.exports.checkSummonerExists = function (SEArg) { //SEArg == SummonerEmitt
                 else {
                     SEArg.setEmitState("ID Not Found");
                 }
-            }		
+            }
         );
     }
 };
@@ -113,7 +117,7 @@ module.exports.initializeEvents = function (SEArg){
         }
     );
     SEArg.on("ID Found", function() {
-        module.exports.checkSummonerInGame(SEArg);    
+        module.exports.checkSummonerInGame(SEArg);
         }
     );
     SEArg.on("ID Not Found", function() {
@@ -122,14 +126,14 @@ module.exports.initializeEvents = function (SEArg){
         }
     );
     SEArg.on("Game Found", function() {
-        module.exports.checkSummonerInGame(SEArg);  
+        module.exports.checkSummonerInGame(SEArg);
         }
     );
     SEArg.on("Game Not Found",function() {
         if(SEArg.getInit() === true){
             console.log("=====================================================" + "\n");
             SEArg.printSummary();
-            console.log("The game has concluded for the above player.");             
+            console.log("The game has concluded for the above player.");
         }
         SEArg.printSummary();
         console.log("A game has not been found.");
