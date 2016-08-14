@@ -98,8 +98,8 @@ SummonerEmitter.prototype.setInitial = function(gameMode, gameType, gameStartTim
 
 SummonerEmitter.prototype.printCurrentGame = function() {
     if (this.getInit() === true) {
-        console.log("[*] Game Start Time: " + this.getGameStartTime());
-        console.log("[*] The Game's total length was: " + this.getGameLength() + " minutes. \n");
+        console.log("\n[*] Game started on " + this.getGameStartTime());
+        console.log("[*] Game has been running for " + this.getGameLength() + " minutes.\n");
     }
 };
 

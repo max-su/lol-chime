@@ -126,8 +126,7 @@ module.exports.initializeEvents = function(SEArg) {
         module.exports.checkSummonerInGame(SEArg);
     });
     SEArg.on("ID Not Found", function() {
-        SEArg.printSummary();
-        console.log("[*] A Summoner was not found.");
+        console.log("[*] Summoner was not found.");
     });
     SEArg.on("Game Found", function() {
         SEArg.printCurrentGame();
@@ -139,7 +138,7 @@ module.exports.initializeEvents = function(SEArg) {
         //if the game is found, conclude the game, else no summary.
         if (SEArg.getInit() === true) {
             SEArg.printSummary();
-            console.log("[*] The game has concluded for the above player.");
+            console.log("[*] The game has ended.");
         } else {
             console.log("[*] A game has not been found.");
         }
