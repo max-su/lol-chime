@@ -5,6 +5,7 @@ if (typeof process.env.APIKEY === "undefined") {
     process.exit(1);
 }
 
+var player = require("play-sound")(opts={});
 var request = require("request");
 var SummonerEmitter = require("./SummonerEmitter");
 module.exports = {}; //prepping exports
@@ -137,6 +138,7 @@ module.exports.initializeEvents = function(SEArg) {
     SEArg.on("Game Not Found", function() {
         //if the game is found, conclude the game, else no summary.
         if (SEArg.getInit() === true) {
+            module.exports.beep();
             SEArg.printSummary();
             console.log("[*] The game has ended.");
         } else {
@@ -148,3 +150,7 @@ module.exports.initializeEvents = function(SEArg) {
     });
     SEArg.emit("Not Initialized");//could be made more efficient, dont have to listen for Not init  and just start checkSummonerExists.
 };
+
+module.exports.beep = function() {
+    player.play("beep.mp3", function(err) { });
+}
