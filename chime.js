@@ -1,10 +1,8 @@
 var SummonerEmitter = require("./leagueLib/SummonerEmitter");
 var leagueLib = require("./leagueLib/leagueLib");
-
 var args = process.argv;
 args.shift();
 args.shift();
-
 var summoner = args.join(" ");
 
 if (summoner === "") {

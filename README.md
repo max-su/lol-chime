@@ -2,15 +2,15 @@
 
 Summary
 --------
-A terminal utility serving the League of Legends community and notifies them when their friends are finished with their game. 
-  
+A terminal utility serving the League of Legends community that runs client side and notifies them when their friends are finished with their game. 
+
 Use
 --------
 *   Run in a terminal
 ```
 node chime.js <%= INSERT IGN HERE %>
 ```
-*   Please keep in mind that Live Game data for 'Bot' cannot be retrieved from Riot’s official API.   
+*   Please keep in mind that Live Game data for 'Bot' cannot be retrieved from Riot’s official API.
 
 Dependencies
 --------
@@ -49,6 +49,10 @@ FSM Diagram of Query Control Flow
 -------
  ![FSM](/docs/FSM.png "FSM")
 
-Current Implementation/Design Issues (Deprecated, no longer doing a web app)
---------
-[Link to problems I've found while implementing and designing this webapp out](docs/issues.md)
+Licenses
+-------
+This application is under the WTFPL License.
+
+Disclaimer
+-------
+Lol-Chime isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.

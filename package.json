@@ -19,7 +19,15 @@
     "type": "git",
     "url": "git+https://github.com/max-su/lol-chime.git"
   },
-  "keywords": ["hip", "tracker", "league", "of", "legends", "leagueoflegends", "riotgames" ],
+  "keywords": [
+    "hip",
+    "tracker",
+    "league",
+    "of",
+    "legends",
+    "leagueoflegends",
+    "riotgames"
+  ],
   "author": "Max Su",
   "license": "WTFPL",
   "bugs": {
