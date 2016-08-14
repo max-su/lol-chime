@@ -20,6 +20,7 @@ SummonerEmitter.constructor = SummonerEmitter;
 SummonerEmitter.prototype.getName = function() {
     return this.name;
 };
+
 SummonerEmitter.prototype.getRegion = function() {
     return this.region;
 };
@@ -27,8 +28,9 @@ SummonerEmitter.prototype.getRegion = function() {
 SummonerEmitter.prototype.setID = function(ID) {
     this.ID = ID;
 };
+
 SummonerEmitter.prototype.getID = function() {
-    if(this.ID === 0) {
+    if (this.ID === 0) {
         console.log("There is an error, ID is not set.");
     }
     return this.ID;
@@ -37,12 +39,14 @@ SummonerEmitter.prototype.getID = function() {
 SummonerEmitter.prototype.setState = function(state) {
     this.state = state;
 };
+
 SummonerEmitter.prototype.setEmitState = function(state) {
     this.state = state;
     this.emit(state);
 };
+
 SummonerEmitter.prototype.getState = function() {
-    if(this.state === "") {
+    if (this.state === "") {
         console.log("There is an error, state is not set.");
     }
     return this.ID;
@@ -52,41 +56,48 @@ SummonerEmitter.prototype.getState = function() {
 SummonerEmitter.prototype.setGameLength = function(gameLength) {
     this.gameLength = (gameLength / 60);
 };
+
 SummonerEmitter.prototype.getGameLength = function() {
-    if(this.gameLength === 0) {
+    if (this.gameLength === 0) {
         console.log("There is an error, gameLength is not set.");
     }
     return this.gameLength;
 };
+
 SummonerEmitter.prototype.getGameMode = function() { //static
-    if(this.gameType === "") {
+    if (this.gameType === "") {
         console.log("There is an error, gameMode is not set.");
     }
     return this.gameType;
 };
+
 SummonerEmitter.prototype.getGameType = function() { //static
-    if(this.gameType === "") {
+    if (this.gameType === "") {
         console.log("There is an error, gameType is not set.");
     }
     return this.gameType;
 };
+
 SummonerEmitter.prototype.getGameStartTime = function() {//static
-    if(this.gameStartTime === 0){
+    if (this.gameStartTime === 0) {
         console.log("There is an error, gameStartTime is not set.");
     }
     return this.gameStartTime;
 };
+
 SummonerEmitter.prototype.getInit = function() { //static; so we dont keep initializing
     return this.init;
 };
+
 SummonerEmitter.prototype.setInitial = function(gameMode, gameType, gameStartTime) {
     this.gameMode = gameMode;
     this.gameType = gameType;
     this.gameStartTime = new Date(gameStartTime); //conversion from epoch milliseconds to human readable
     this.init = true;
 };
+
 SummonerEmitter.prototype.printCurrentGame = function() {
-    if(this.getInit() === true){
+    if (this.getInit() === true) {
         console.log("Game Start Time: " + this.getGameStartTime() + "\n");
         console.log("The Game's total length was: " + this.getGameLength() + " minutes. \n");
     }

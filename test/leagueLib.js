@@ -51,7 +51,7 @@ describe("leagueLib", function() {
         it("should fail on invalid data", function(done) {
             var tests = [null, 0, undefined, "abcdefg", {}];
             for (var i = 0; i < tests.length; i++) {
-                assert.equal(leagueLib.getRegionID(tests[i], null));
+                assert.throws(function() {leagueLib.getRegionID(tests[i])}, Error);
             }
 
             done();
