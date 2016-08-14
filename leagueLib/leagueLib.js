@@ -105,9 +105,7 @@ module.exports.checkSummonerInGame = function(SEArg) {
             }
             SEArg.setGameLength(body.gameLength);
             //This is the only thing we're updating, how long the game is.
-            setTimeout(function() {
-                SEArg.setEmitState("Game Found");
-            }, 30000); //callBack emit this in 30seconds.
+            SEArg.setEmitState("Game Found");
         } else if (!error && response.statusCode === 404) { //NO GAME FOUND
             SEArg.setEmitState("Game Not Found");
         } else if (!error && response.statusCode === 429) { // Rate limited by the API
@@ -133,7 +131,9 @@ module.exports.initializeEvents = function(SEArg) {
     });
     SEArg.on("Game Found", function() {
         SEArg.printCurrentGame();
-        module.exports.checkSummonerInGame(SEArg);
+        setTimeout(function() {
+            module.exports.checkSummonerInGame(SEArg);
+        }, 30000);
     });
     SEArg.on("Game Not Found", function() {
         //if the game is found, conclude the game, else no summary.
