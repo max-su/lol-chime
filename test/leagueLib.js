@@ -1,9 +1,6 @@
 var assert = require("assert");
 var process = require("process");
 
-var dummyAPIKey = "746869736973616e6170696b6579";
-process.env["APIKEY"] = dummyAPIKey;
-
 var leagueLib = require("../leagueLib/leagueLib.js");
 
 describe("leagueLib", function() {
