@@ -98,14 +98,14 @@ SummonerEmitter.prototype.setInitial = function(gameMode, gameType, gameStartTim
 
 SummonerEmitter.prototype.printCurrentGame = function() {
     if (this.getInit() === true) {
-        console.log("Game Start Time: " + this.getGameStartTime() + "\n");
-        console.log("The Game's total length was: " + this.getGameLength() + " minutes. \n");
+        console.log("[*] Game Start Time: " + this.getGameStartTime());
+        console.log("[*] The Game's total length was: " + this.getGameLength() + " minutes. \n");
     }
 };
 
 SummonerEmitter.prototype.printSummary = function() {
-    console.log("Requested IGN: " + this.getName() + "\n" +
-                "Requested Region: " + this.getRegion() + "\n");
+    console.log("[*] Requested IGN: " + this.getName());
+    console.log("[*] Requested Region: " + this.getRegion());
     this.printCurrentGame();
 };
 

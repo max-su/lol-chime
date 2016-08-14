@@ -1,7 +1,7 @@
 require("dotenv").config({silent: true}); //keep api key in .env
 
 if (typeof process.env.APIKEY === "undefined") {
-    console.log("API key not found.");
+    console.log("[!] API key not found.");
     process.exit(1);
 }
 
@@ -120,15 +120,16 @@ module.exports.checkSummonerInGame = function(SEArg) {
 
 module.exports.initializeEvents = function(SEArg) {
     SEArg.on("Not Initialized", function() {
+        console.log("[*] Looking up summoner " + SEArg.getName());
         module.exports.checkSummonerExists(SEArg);
     });
     SEArg.on("ID Found", function() {
-        console.log("We found the ID!, checking if the player is in the game.");
+        console.log("[*] Summoner found! Checking if the player is in game.");
         module.exports.checkSummonerInGame(SEArg);
     });
     SEArg.on("ID Not Found", function() {
         SEArg.printSummary();
-        console.log("A Summoner was not found matching this");
+        console.log("[*] A Summoner was not found.");
     });
     SEArg.on("Game Found", function() {
         SEArg.printCurrentGame();
@@ -138,13 +139,13 @@ module.exports.initializeEvents = function(SEArg) {
         //if the game is found, conclude the game, else no summary.
         if (SEArg.getInit() === true) {
             SEArg.printSummary();
-            console.log("The game has concluded for the above player.");
+            console.log("[*] The game has concluded for the above player.");
         } else {
-            console.log("A game has not been found.");
+            console.log("[*] A game has not been found.");
         }
     });
     SEArg.on("Rate limited", function() {
-        console.log("Slow down!");
+        console.log("[!] Slow down!");
     });
     SEArg.emit("Not Initialized");//could be made more efficient, dont have to listen for Not init  and just start checkSummonerExists.
 };

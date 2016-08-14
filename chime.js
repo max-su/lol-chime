@@ -9,5 +9,10 @@ args.shift();
 
 var summoner = args.join(" ");
 
+if (summoner === "") {
+    console.log("[!] Please provide a summoner name.");
+    process.exit(1);
+}
+
 summonerTest = new SummonerEmitter(summoner, process.env.REGION);
 leagueLib.initializeEvents(summonerTest);
