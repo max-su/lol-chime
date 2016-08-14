@@ -92,13 +92,13 @@ SummonerEmitter.prototype.getInit = function() { //static; so we dont keep initi
 SummonerEmitter.prototype.setInitial = function(gameMode, gameType, gameStartTime) {
     this.gameMode = gameMode;
     this.gameType = gameType;
-    this.gameStartTime = new Date(gameStartTime); //conversion from epoch milliseconds to human readable
+    this.gameStartTime = new Date(gameStartTime).toLocaleTimeString(); //conversion from epoch milliseconds to human readable
     this.init = true;
 };
 
 SummonerEmitter.prototype.printCurrentGame = function() {
     if (this.getInit() === true) {
-        console.log("\n[*] Game started on " + this.getGameStartTime());
+        console.log("\n[*] Game started at " + this.getGameStartTime());
         console.log("[*] Game has been running for " + this.getGameLength() + " minutes.\n");
     }
 };
