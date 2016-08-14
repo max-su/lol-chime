@@ -1,4 +1,10 @@
-require("dotenv").config(); //keep api key in .env
+require("dotenv").config({silent: true}); //keep api key in .env
+
+if (typeof process.env.APIKEY === "undefined") {
+    console.log("API key not found.");
+    process.exit(1);
+}
+
 var request = require("request");
 var SummonerEmitter = require("./SummonerEmitter");
 module.exports = {}; //prepping exports
