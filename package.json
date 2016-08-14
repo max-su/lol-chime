@@ -1,12 +1,11 @@
 {
   "name": "lol-chime",
   "version": "1.0.0",
-  "description": "A terminal utility that returns an audio ping when a player is done with their League of Legends Game",
-  "main": "leagueLib.js",
+  "description": "A terminal utility that returns an audio ping when a player is done with their League of Legends Game.",
+  "main": "chime.js",
   "dependencies": {
     "dotenv": "^2.0.0",
     "events": "^1.1.0",
-    "minimist": "^1.2.0",
     "request": "^2.72.0"
   },
   "devDependencies": {
@@ -20,8 +19,8 @@
     "type": "git",
     "url": "git+https://github.com/max-su/lol-chime.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["hip", "tracker", "league", "of", "legends", "leagueoflegends", "riotgames" ],
+  "author": "Max Su",
   "license": "WTFPL",
   "bugs": {
     "url": "https://github.com/max-su/lol-chime/issues"

@@ -49,11 +49,6 @@ FSM Diagram of Query Control Flow
 -------
  ![FSM](/docs/FSM.png "FSM")
 
-Travis Notes
--------
-*   Not sure how to ci test for anything but a user that is definitely not in a game(me).
-*   Would require a user always in a game & require travis not timing out.
-
 Current Implementation/Design Issues (Deprecated, no longer doing a web app)
 --------
 [Link to problems I've found while implementing and designing this webapp out](docs/issues.md)
