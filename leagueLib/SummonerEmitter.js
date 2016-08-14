@@ -50,7 +50,7 @@ SummonerEmitter.prototype.getState = function() {
 
 //the below are all static with the exception of game Length which is the only one that should be updated.
 SummonerEmitter.prototype.setGameLength = function(gameLength) {
-    this.gameLength = gameLength / 60;
+    this.gameLength = (gameLength / 60);
 };
 SummonerEmitter.prototype.getGameLength = function() {
     if(this.gameLength === 0) {

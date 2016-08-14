@@ -132,14 +132,13 @@ module.exports.initializeEvents = function (SEArg){
         }
     );
     SEArg.on("Game Not Found",function() {
-        if(SEArg.getInit() === true){
-            console.log("=====================================================" + "\n");
-            SEArg.printSummary();
-            console.log("The game has concluded for the above player.");
-        }
-        SEArg.printSummary();
-        console.log("A game has not been found.");
-
+        //if the game is found, conclude the game, else no summary.
+            if(SEArg.getInit() === true){
+                SEArg.printSummary();
+                console.log("The game has concluded for the above player.");
+            }else{
+            console.log("A game has not been found.");
+            }
         }
     );
     SEArg.emit("Not Initialized");//could be made more efficient, dont have to listen for Not init  and just start checkSummonerExists.
