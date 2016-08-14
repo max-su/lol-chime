@@ -6,11 +6,17 @@ A terminal utility serving the League of Legends community and notifies them whe
   
 Use
 --------
-Run in a terminal
+*   Run in a terminal
 ```
-node chime.js
+node chime.js <%= INSERT IGN HERE %>
 ```
-Please keep in mind that Live Game data for 'Bot' cannot be retrieved from Riot’s official API.
+*   If you want to query an ign with spaces you can with an escape character followed by a space```\ ``` 
+| IGN             | IGN Argument     | Correct?|
+| ----------------|:----------------:|--------:|
+|Quantum Bogosort|Quantum Bogosort   |no       |
+|Quantum Bogosort|Quantum\ Bogosort  |yes      |
+*   Please keep in mind that Live Game data for 'Bot' cannot be retrieved from Riot’s official API.
+*   
 
 Dependencies
 --------
@@ -27,8 +33,8 @@ vim ./leagueLib/.env.example
 *   replace ```<%= FILL IN API KEY HERE %>``` with your api key.
 *   replace ```<%= FILL IN REGION CODE HERE %>``` with your region code(see the following section).
 *   Please keep in mind you do not need to put quotation marks around it!
-*   finally copy over the example to the actual .env
-``` cp ./leagueLib/.env.example ./leagueLib/.env ```
+*   Finally copy over the example to the actual .env
+``` cp ./.env.example ./.env ```
    
 Regions
 -------
@@ -43,7 +49,7 @@ Regions
 *   OCE
 *   TR
 *   RU
-*   If we don't have your region please blame rito!
+*   If we don't have your region please blame rito & their chinese overlords. Sorry CN/SEA!
 
 FSM Diagram of Query Control Flow
 -------
