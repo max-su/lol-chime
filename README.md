@@ -1,4 +1,5 @@
-# lol-chime
+# lol-chime [![Build Status](https://travis-ci.org/max-su/lol-chime.svg?branch=master)](https://travis-ci.org/max-su/lol-chime)
+
 Summary
 --------
 A terminal utility serving the League of Legends community and notifies them when their friends are finished with their game. 
