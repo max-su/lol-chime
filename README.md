@@ -10,11 +10,6 @@ Use
 ```
 node chime.js <%= INSERT IGN HERE %>
 ```
-*   If you want to query an ign with spaces you can with an escape character followed by a space```\ ``` 
-| IGN             | IGN Argument     | Correct?|
-| ----------------|:----------------:|--------:|
-|Quantum Bogosort|Quantum Bogosort   |no       |
-|Quantum Bogosort|Quantum\ Bogosort  |yes      |
 *   Please keep in mind that Live Game data for 'Bot' cannot be retrieved from Riot’s official API.   
 
 Dependencies
