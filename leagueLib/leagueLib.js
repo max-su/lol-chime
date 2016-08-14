@@ -77,11 +77,13 @@ module.exports.checkSummonerExists = function(SEArg) { //SEArg == SummonerEmitte
             json: true //parses json string automatically into a js object
         },
         function(error, response, body) {
-            if(!error && response.statusCode === 200) {
+            if (!error && response.statusCode === 200) {
                 var name = SEArg.getName();
                 var id = body[cleanSummonerName(name)].id;
                 SEArg.setID(id);
                 SEArg.setEmitState("ID Found");
+            } else if (!error && response.statusCode === 429) { // Rate limited by the API
+                SEArg.setEmitState("Rate limited");
             } else {
                 SEArg.setEmitState("ID Not Found");
             }
@@ -108,6 +110,8 @@ module.exports.checkSummonerInGame = function(SEArg) {
             }, 30000); //callBack emit this in 30seconds.
         } else if (!error && response.statusCode === 404) { //NO GAME FOUND
             SEArg.setEmitState("Game Not Found");
+        } else if (!error && response.statusCode === 429) { // Rate limited by the API
+            SEArg.setEmitState("Rate limited");
         } else {
             SEArg.setEmitState("Server Sucks");
         }
@@ -130,7 +134,7 @@ module.exports.initializeEvents = function(SEArg) {
         SEArg.printCurrentGame();
         module.exports.checkSummonerInGame(SEArg);
     });
-    SEArg.on("Game Not Found",function() {
+    SEArg.on("Game Not Found", function() {
         //if the game is found, conclude the game, else no summary.
         if (SEArg.getInit() === true) {
             SEArg.printSummary();
@@ -138,6 +142,9 @@ module.exports.initializeEvents = function(SEArg) {
         } else {
             console.log("A game has not been found.");
         }
+    });
+    SEArg.on("Rate limited", function() {
+        console.log("Slow down!");
     });
     SEArg.emit("Not Initialized");//could be made more efficient, dont have to listen for Not init  and just start checkSummonerExists.
 };
