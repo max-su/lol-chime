@@ -117,6 +117,7 @@ module.exports.initializeEvents = function (SEArg){
         }
     );
     SEArg.on("ID Found", function() {
+        console.log("We found the ID!, checking if the player is in the game.");
         module.exports.checkSummonerInGame(SEArg);
         }
     );
@@ -126,6 +127,7 @@ module.exports.initializeEvents = function (SEArg){
         }
     );
     SEArg.on("Game Found", function() {
+        SEArg.printCurrentGame();
         module.exports.checkSummonerInGame(SEArg);
         }
     );

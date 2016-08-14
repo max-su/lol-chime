@@ -82,16 +82,20 @@ SummonerEmitter.prototype.getInit = function() { //static; so we dont keep initi
 SummonerEmitter.prototype.setInitial = function(gameMode, gameType, gameStartTime) {
     this.gameMode = gameMode;
     this.gameType = gameType;
-    this.gameStartTime = new Date().valueOf(gameStartTime); //conversion from epoch milliseconds to human readable
+    this.gameStartTime = new Date(gameStartTime); //conversion from epoch milliseconds to human readable
     this.init = true;
 };
-
-SummonerEmitter.prototype.printSummary = function() {
-    console.log("Requested IGN: " + this.getName() + "\n" +
-                "Requested Region: " + this.getRegion() + "\n");
+SummonerEmitter.prototype.printCurrentGame = function() {
     if(this.getInit() === true){
         console.log("Game Start Time: " + this.getGameStartTime() + "\n");
         console.log("The Game's total length was: " + this.getGameLength() + " minutes. \n");
     }
 };
+
+SummonerEmitter.prototype.printSummary = function() {
+    console.log("Requested IGN: " + this.getName() + "\n" +
+                "Requested Region: " + this.getRegion() + "\n");
+    this.printCurrentGame();
+};
+
 module.exports = SummonerEmitter;
