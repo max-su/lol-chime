@@ -51,7 +51,7 @@ FSM Diagram of Query Control Flow
 
 Licenses
 -------
-This application is under the WTFPL License.
+This application is under the [WTFPL License](./LICENSE.md).
 
 Disclaimer
 -------
