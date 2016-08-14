@@ -15,8 +15,7 @@ node chime.js <%= INSERT IGN HERE %>
 | ----------------|:----------------:|--------:|
 |Quantum Bogosort|Quantum Bogosort   |no       |
 |Quantum Bogosort|Quantum\ Bogosort  |yes      |
-*   Please keep in mind that Live Game data for 'Bot' cannot be retrieved from Riot’s official API.
-*   
+*   Please keep in mind that Live Game data for 'Bot' cannot be retrieved from Riot’s official API.   
 
 Dependencies
 --------
