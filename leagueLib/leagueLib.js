@@ -49,7 +49,7 @@ var getUrl = function(typeOfCall, region, id) {
 };
 
 var cleanSummonerName = function(summonerName) {
-    var ignTrim = summonerName.replace(" ","");
+    var ignTrim = summonerName.replace(/ /g, "");
     ignTrim = ignTrim.toLowerCase();
     ignTrim = ignTrim.trim();
     return ignTrim;
