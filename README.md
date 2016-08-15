@@ -8,14 +8,14 @@ Use
 --------
 *   Run in a terminal
 ```
-node chime.js <%= INSERT IGN HERE %>
+chime <%= INSERT IGN HERE %>
 ```
 *   Please keep in mind that Live Game data for 'Bot' cannot be retrieved from Riot’s official API.
 
-Dependencies & Config
+Dependencies
 --------
 
-*   We require mplayer to run the audio chime in node.
+*   We require mplayer to run the audio chime in node. (If you don't install it, that's okay but you might not get the audio chime!)
 *   In Ubuntu run
 ```
 sudo apt-get install mplayer
@@ -23,22 +23,25 @@ sudo apt-get install mplayer
 *   Mplayer installation for [OSX](https://sourceforge.net/projects/mplayerosx/) & [Windows](https://sourceforge.net/projects/mplayerwin/)
 *   Open up terminal and run
 ```
-npm install
+npm install lol-chime -g
 ```
-*   Sign in on your league of legends account on [the Riot Games developer portal](https://developer.riotgames.com/sign-in).
-*   In the repository's root directory, do
+
+Config
+--------
+*   Sign in on your league of legends account on [the Riot Games developer portal](https://developer.riotgames.com/sign-in) and grab an API key if you haven't already!
+*   In this repository's root directory, do
 ```
 vim .env.example
 ```
 *   replace ```<%= FILL IN API KEY HERE %>``` with your api key.
 *   replace ```<%= FILL IN REGION CODE HERE %>``` with your region code(see the following section).
 *   replace ```<%= FILL IN REFRESH RATE %>``` with how often time interval(seconds) you want to refresh.
-*   Do keep in mind that you should only set it to something that is above greater than or equal than 2 preferably as for trial keys you are only alloted for
+*   We recommend a refresh rate of 2 to 10 to keep in line with Riot's allotted limit.
 *   10 requests every 10 seconds
 *   500 requests every 10 minutes
 *   Please keep in mind you do not need to put quotation marks around these strings or numbers!
-*   Finally copy over the example to the actual .env
-``` cp .env.example .env ```
+*   Finally copy over the example to the actual ```~/.chimerc```
+``` cp .env.example ~/.chimerc ```
    
 Regions
 -------
