@@ -1,3 +1,4 @@
+var constants = require("./constants.js");
 var EventEmitter = require("events");
 var util = require("util");
 
@@ -13,6 +14,7 @@ function SummonerEmitter(name, region){
     this.init = false;
     this.queueType = "";
     this.champion = "";
+    this.map = "";
 }
 
 util.inherits(SummonerEmitter, EventEmitter); //inherit the prototype methods from EventEmitter to summonerEmitter
@@ -25,6 +27,14 @@ SummonerEmitter.prototype.setChampion = function(champion) {
 
 SummonerEmitter.prototype.getChampion = function() {
     return this.champion;
+}
+
+SummonerEmitter.prototype.setMap = function(map) {
+    this.map = map;
+}
+
+SummonerEmitter.prototype.getMap = function() {
+    return this.map;
 }
 
 SummonerEmitter.prototype.setQueueType = function(queueType) {
@@ -86,7 +96,7 @@ SummonerEmitter.prototype.getGameMode = function() { //static
     if (this.gameType === "") {
         console.log("There is an error, gameMode is not set.");
     }
-    return this.gameType;
+    return this.gameMode;
 };
 
 SummonerEmitter.prototype.getGameType = function() { //static
@@ -107,12 +117,13 @@ SummonerEmitter.prototype.getInit = function() { //static; so we dont keep initi
     return this.init;
 };
 
-SummonerEmitter.prototype.setInitial = function(gameMode, gameType, gameStartTime, queueType) {
+SummonerEmitter.prototype.setInitial = function(gameMode, gameType, gameStartTime, queueType, map) {
     this.gameMode = gameMode;
     this.gameType = gameType;
     this.gameStartTime = new Date(gameStartTime).toLocaleTimeString(); //conversion from epoch milliseconds to human readable
     this.init = true;
     this.queueType = queueType;
+    this.map = map;
 };
 
 SummonerEmitter.prototype.printCurrentGame = function() {
@@ -123,9 +134,16 @@ SummonerEmitter.prototype.printCurrentGame = function() {
 };
 
 SummonerEmitter.prototype.printSummary = function() {
-    console.log("[*] Requested IGN: " + this.getName());
-    console.log("[*] Requested Region: " + this.getRegion());
-    this.printCurrentGame();
+    var gameType = constants.gameTypes[this.getGameType()];
+    var gameMode = constants.gameModes[this.getGameMode()];
+    var queueType = constants.queueTypes[this.getQueueType()];
+    var map = constants.maps[this.getMap()];
+    console.log("[*] IGN: " + this.getName());
+    console.log("[*] Region: " + this.getRegion());
+    console.log("[*] Game Type: " + gameType);
+    console.log("[*] Game Mode: " + gameMode);
+    console.log("[*] Queue Type: " + queueType);
+    console.log("[*] Map: " + map)
 };
 
 module.exports = SummonerEmitter;

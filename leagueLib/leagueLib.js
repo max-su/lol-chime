@@ -120,8 +120,7 @@ module.exports.checkSummonerInGame = function(SEArg) {
 
             if (SEArg.getInit() === false) {
                 //So we dont keep reInitializing these variables.
-                SEArg.printSummary();
-                SEArg.setInitial(body.gameMode, body.gameType, body.gameStartTime);
+                SEArg.setInitial(body.gameMode, body.gameType, body.gameStartTime, body.gameQueueConfigId, body.mapId);
 
                 var championID;
                 for (var participant in body.participants) {
@@ -131,6 +130,7 @@ module.exports.checkSummonerInGame = function(SEArg) {
                 }
                 if (typeof championID === "undefined") {
                     console.log("[*] Could not get champion ID.");
+                    SEArg.printSummary();
                     SEArg.setEmitState("Game Found");
                 } else {
                     request({
@@ -146,11 +146,13 @@ module.exports.checkSummonerInGame = function(SEArg) {
                         } else {
                             console.log(error);
                         }
+                        SEArg.printSummary();
                         SEArg.setEmitState("Game Found");
                     });
                 }
+            } else {
+                SEArg.setEmitState("Game Found");
             }
-
         } else if (!error && response.statusCode === 404) { //NO GAME FOUND
             SEArg.setEmitState("Game Not Found");
         } else if (!error && response.statusCode === 429) { // Rate limited by the API
@@ -185,6 +187,7 @@ module.exports.initializeEvents = function(SEArg) {
         if (SEArg.getInit() === true) {
             module.exports.beep();
             SEArg.printSummary();
+            SEArg.printCurrentGame();
             console.log("[*] The game has ended.");
         } else {
             console.log("[*] A game has not been found.");
