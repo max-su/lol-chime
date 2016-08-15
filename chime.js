@@ -10,6 +10,5 @@ if (summoner === "") {
     process.exit(1);
 }
 
-leagueLib.beep();
 summonerTest = new SummonerEmitter(summoner, process.env.REGION);
 leagueLib.initializeEvents(summonerTest);
