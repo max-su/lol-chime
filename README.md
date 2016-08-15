@@ -12,7 +12,7 @@ node chime.js <%= INSERT IGN HERE %>
 ```
 *   Please keep in mind that Live Game data for 'Bot' cannot be retrieved from Riot’s official API.
 
-Dependencies
+Dependencies & Config
 --------
 
 *   We require mplayer to run the audio chime in node.
@@ -28,11 +28,15 @@ npm install
 *   Sign in on your league of legends account on [the Riot Games developer portal](https://developer.riotgames.com/sign-in).
 *   In the repository's root directory, do
 ```
-vim ./leagueLib/.env.example
+vim ./.env.example
 ```
 *   replace ```<%= FILL IN API KEY HERE %>``` with your api key.
 *   replace ```<%= FILL IN REGION CODE HERE %>``` with your region code(see the following section).
-*   Please keep in mind you do not need to put quotation marks around it!
+*   replace ```<%= FILL IN REFRESH RATE %>``` with how often time interval(seconds) you want to refresh.
+*   Do keep in mind that you should only set it to something that is above greater than or equal than 2 preferably as for trial keys you are only alloted for
+*   10 requests every 10 seconds
+*   500 requests every 10 minutes
+*   Please keep in mind you do not need to put quotation marks around these strings or numbers!
 *   Finally copy over the example to the actual .env
 ``` cp ./.env.example ./.env ```
    

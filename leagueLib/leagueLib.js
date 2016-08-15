@@ -131,9 +131,10 @@ module.exports.initializeEvents = function(SEArg) {
     });
     SEArg.on("Game Found", function() {
         SEArg.printCurrentGame();
+        callBackMS = process.env.REFRESHRATE * 1000; //seconds to MS for setTimeOut
         setTimeout(function() {
             module.exports.checkSummonerInGame(SEArg);
-        }, 30000);
+        }, callBackMS);
     });
     SEArg.on("Game Not Found", function() {
         //if the game is found, conclude the game, else no summary.
