@@ -18,7 +18,7 @@ Dependencies & Config
 *   We require mplayer to run the audio chime in node.
 *   In Ubuntu run
 ```
-sudo apt-get install mplayr
+sudo apt-get install mplayer
 ```
 *   Mplayer installation for [OSX](https://sourceforge.net/projects/mplayerosx/) & [Windows](https://sourceforge.net/projects/mplayerwin/)
 *   Open up terminal and run
@@ -28,7 +28,7 @@ npm install
 *   Sign in on your league of legends account on [the Riot Games developer portal](https://developer.riotgames.com/sign-in).
 *   In the repository's root directory, do
 ```
-vim ./.env.example
+vim /.env.example
 ```
 *   replace ```<%= FILL IN API KEY HERE %>``` with your api key.
 *   replace ```<%= FILL IN REGION CODE HERE %>``` with your region code(see the following section).
@@ -38,7 +38,7 @@ vim ./.env.example
 *   500 requests every 10 minutes
 *   Please keep in mind you do not need to put quotation marks around these strings or numbers!
 *   Finally copy over the example to the actual .env
-``` cp ./.env.example ./.env ```
+``` cp /.env.example /.env ```
    
 Regions
 -------
@@ -54,10 +54,6 @@ Regions
 *   TR
 *   RU
 *   If we don't have your region please blame rito & their chinese overlords. Sorry CN/SEA!
-
-FSM Diagram of Query Control Flow
--------
- ![FSM](/docs/FSM.png "FSM")
 
 Licenses
 -------
