@@ -152,5 +152,5 @@ module.exports.initializeEvents = function(SEArg) {
 };
 
 module.exports.beep = function() {
-    player.play("beep.mp3", function(err) { });
-}
+    player.play("bard.mp3", function(err) { console.log(err); });
+};

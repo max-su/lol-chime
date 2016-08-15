@@ -15,6 +15,12 @@ node chime.js <%= INSERT IGN HERE %>
 Dependencies
 --------
 
+*   We require mplayer to run the audio chime in node.
+*   In Ubuntu run
+```
+sudo apt-get install mplayr
+```
+*   Mplayer installation for [OSX](https://sourceforge.net/projects/mplayerosx/) & [Windows](https://sourceforge.net/projects/mplayerwin/)
 *   Open up terminal and run
 ```
 npm install
