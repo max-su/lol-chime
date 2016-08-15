@@ -7,7 +7,6 @@ A terminal utility serving the League of Legends community that runs client side
 Use
 --------
 *   Run in a terminal
-*
 ```
 chime <%= INSERT IGN HERE %>
 ```
