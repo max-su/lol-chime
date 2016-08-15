@@ -202,7 +202,7 @@ module.exports.initializeEvents = function(SEArg) {
 module.exports.beep = function() {
     player.play(__dirname + "/bard.mp3", function(err) {
         if (err) {
-            console.log(err);
+            console.log("[*] Could not play audio.");
         }
     });
 };
