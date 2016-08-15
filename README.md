@@ -24,7 +24,7 @@ Dependencies
 ```
 sudo apt-get install mplayer
 ```
-*   Mplayer installation for [OSX](https://sourceforge.net/projects/mplayerosx/) & [Windows](https://sourceforge.net/projects/mplayerwin/)
+*   Mplayer installation for [OSX](http://www.techspot.com/downloads/695-mplayerosx-for-mac.html) & [Windows](http://www.techspot.com/downloads/5141-mplayer-for-windows.html)
 *   Open up terminal and run
 ```
 npm install lol-chime -g
