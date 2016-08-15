@@ -7,10 +7,11 @@ A terminal utility serving the League of Legends community that runs client side
 Use
 --------
 *   Run in a terminal
-*```
+*
+```
 chime <%= INSERT IGN HERE %>
 ```
-*```
+```
 chime boostedAnimal
 ```
 *   Would be a query for the summoner boostedAnimal in whatever region you specify in the config file. 
