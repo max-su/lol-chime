@@ -38,6 +38,9 @@ var getUrl = function(typeOfCall, region, id) {
         case "gameLookUp":
             result += "observer-mode/rest/consumer/getSpectatorGameInfo/" + getRegionID(region)+ "/";
             break;
+        case "championLookUp":
+            result += "api/lol/static-data/" + region + "/v1.2/champion/";
+            break;
         default:
             throw new Error("Invalid call type.");
     }
@@ -113,14 +116,41 @@ module.exports.checkSummonerInGame = function(SEArg) {
     },
     function(error, response, body) {
         if (!error && response.statusCode === 200) { //GAME FOUND
+            SEArg.setGameLength(body.gameLength);
+
             if (SEArg.getInit() === false) {
+                //So we dont keep reInitializing these variables.
                 SEArg.printSummary();
                 SEArg.setInitial(body.gameMode, body.gameType, body.gameStartTime);
-                //So we dont keep reInitializing these variables.
+
+                var championID;
+                for (var participant in body.participants) {
+                    if (body.participants[participant].summonerId === SEArg.getID()) {
+                        championID = body.participants[participant].championId;
+                    }
+                }
+                if (typeof championID === "undefined") {
+                    console.log("[*] Could not get champion ID.");
+                    SEArg.setEmitState("Game Found");
+                } else {
+                    request({
+                        url: getUrl("championLookUp", SEArg.getRegion().toLowerCase(), championID),
+                        json: true
+                    },
+                    function(error, response, body) {
+                        if (!error && response.statusCode === 200) {
+                            SEArg.setChampion(body.key);
+                            console.log("[*] Playing as " + body.key);
+                        } else if (!error && response.statusCode === 404) {
+                            console.log("[*] Could not get champion.");
+                        } else {
+                            console.log(error);
+                        }
+                        SEArg.setEmitState("Game Found");
+                    });
+                }
             }
-            SEArg.setGameLength(body.gameLength);
-            //This is the only thing we're updating, how long the game is.
-            SEArg.setEmitState("Game Found");
+
         } else if (!error && response.statusCode === 404) { //NO GAME FOUND
             SEArg.setEmitState("Game Not Found");
         } else if (!error && response.statusCode === 429) { // Rate limited by the API

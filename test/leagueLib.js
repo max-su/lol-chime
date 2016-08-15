@@ -82,6 +82,15 @@ describe("leagueLib", function() {
             done();
         });
 
+        it("should handle champion lookups", function(done) {
+            for (var i = 0; i < regions.length; i++) {
+                var region = regions[i];
+                var expected = "https://" + region + ".api.pvp.net/api/lol/static-data/" + region + "/v1.2/champion/" + dummyID + "?api_key=" + config.APIKEY;
+                assert.equal(leagueLib.getUrl("championLookUp", region, dummyID), expected);
+            }
+            done();
+        });
+
         it("should fail on invalid calls", function(done) {
             var tests = [123, undefined, {}, null, ""];
             for (var i = 0; i < tests.length; i++) {

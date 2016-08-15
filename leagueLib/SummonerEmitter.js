@@ -11,11 +11,29 @@ function SummonerEmitter(name, region){
     this.gameMode = "";
     this.gameType = "";
     this.init = false;
+    this.queueType = "";
+    this.champion = "";
 }
 
 util.inherits(SummonerEmitter, EventEmitter); //inherit the prototype methods from EventEmitter to summonerEmitter
 SummonerEmitter.prototype = Object.create(EventEmitter.prototype);
 SummonerEmitter.constructor = SummonerEmitter;
+
+SummonerEmitter.prototype.setChampion = function(champion) {
+    this.champion = champion;
+}
+
+SummonerEmitter.prototype.getChampion = function() {
+    return this.champion;
+}
+
+SummonerEmitter.prototype.setQueueType = function(queueType) {
+    this.queueType = queueType;
+}
+
+SummonerEmitter.prototype.getQueueType = function() {
+    return this.queueType;
+}
 
 SummonerEmitter.prototype.getName = function() {
     return this.name;
@@ -89,11 +107,12 @@ SummonerEmitter.prototype.getInit = function() { //static; so we dont keep initi
     return this.init;
 };
 
-SummonerEmitter.prototype.setInitial = function(gameMode, gameType, gameStartTime) {
+SummonerEmitter.prototype.setInitial = function(gameMode, gameType, gameStartTime, queueType) {
     this.gameMode = gameMode;
     this.gameType = gameType;
     this.gameStartTime = new Date(gameStartTime).toLocaleTimeString(); //conversion from epoch milliseconds to human readable
     this.init = true;
+    this.queueType = queueType;
 };
 
 SummonerEmitter.prototype.printCurrentGame = function() {
