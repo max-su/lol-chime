@@ -1,9 +1,12 @@
 var assert = require("assert");
 var process = require("process");
+var config = require("home-config").load(".chimerc", {
+    APIKEY: "746869736973616e6170696b6579",
+    REGION: "NA",
+    REFRESHRATE: 30
+});
 
 var leagueLib = require("../leagueLib/leagueLib.js");
-
-process.env["APIKEY"] = "746869736973616e6170696b6579";
 
 describe("leagueLib", function() {
 
@@ -64,7 +67,7 @@ describe("leagueLib", function() {
         it("should handle summoner lookups", function(done) {
             for (var i = 0; i < regions.length; i++) {
                 var region = regions[i];
-                var expected = "https://" + region + ".api.pvp.net/api/lol/" + region + "/v1.4/summoner/by-name/" + dummyID + "?api_key=" + process.env.APIKEY;
+                var expected = "https://" + region + ".api.pvp.net/api/lol/" + region + "/v1.4/summoner/by-name/" + dummyID + "?api_key=" + config.APIKEY;
                 assert.equal(leagueLib.getUrl("summonerLookUp", region, dummyID), expected);
             }
             done();
@@ -73,7 +76,7 @@ describe("leagueLib", function() {
         it("should handle game lookups", function(done) {
             for (var i = 0; i < regions.length; i++) {
                 var region = regions[i];
-                var expected = "https://" + region + ".api.pvp.net/observer-mode/rest/consumer/getSpectatorGameInfo/" + leagueLib.getRegionID(region) + "/" + dummyID + "?api_key=" + process.env.APIKEY;
+                var expected = "https://" + region + ".api.pvp.net/observer-mode/rest/consumer/getSpectatorGameInfo/" + leagueLib.getRegionID(region) + "/" + dummyID + "?api_key=" + config.APIKEY;
                 assert.equal(leagueLib.getUrl("gameLookUp", region, dummyID), expected);
             }
             done();

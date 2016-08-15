@@ -4,8 +4,8 @@
   "description": "A terminal utility that returns an audio ping when a player is done with their League of Legends Game.",
   "main": "chime.js",
   "dependencies": {
-    "dotenv": "^2.0.0",
     "events": "^1.1.0",
+    "home-config": "^0.1.0",
     "play-sound": "0.0.9",
     "request": "^2.72.0"
   },
@@ -34,5 +34,8 @@
   "bugs": {
     "url": "https://github.com/max-su/lol-chime/issues"
   },
-  "homepage": "https://github.com/max-su/lol-chime#readme"
+  "homepage": "https://github.com/max-su/lol-chime#readme",
+  "bin": {
+    "chime": "chime.js"
+  }
 }

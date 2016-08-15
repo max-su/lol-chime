@@ -1,6 +1,10 @@
-require("dotenv").config({silent: true}); //keep api key in .env
+var config = require("home-config").load(".chimerc", {
+    APIKEY: process.env.APIKEY,
+    REGION: process.env.REGION,
+    REFRESHRATE: process.env.REFRESHRATE
+});
 
-if (typeof process.env.APIKEY === "undefined") {
+if (typeof config.APIKEY === "undefined") {
     console.log("[!] API key not found.");
     process.exit(1);
 }
@@ -27,7 +31,7 @@ var getUrl = function(typeOfCall, region, id) {
         default:
             throw new Error("Invalid call type.");
     }
-    result += id + "?api_key=" + process.env.APIKEY;
+    result += id + "?api_key=" + config.APIKEY;
     return result;
 };
 
@@ -131,7 +135,7 @@ module.exports.initializeEvents = function(SEArg) {
     });
     SEArg.on("Game Found", function() {
         SEArg.printCurrentGame();
-        callBackMS = process.env.REFRESHRATE * 1000; //seconds to MS for setTimeOut
+        callBackMS = config.REFRESHRATE * 1000; //seconds to MS for setTimeOut
         setTimeout(function() {
             module.exports.checkSummonerInGame(SEArg);
         }, callBackMS);
