@@ -41,7 +41,7 @@ vim .env.example
 *   500 requests every 10 minutes
 *   Please keep in mind you do not need to put quotation marks around these strings or numbers!
 *   Finally copy over the example to the actual ```~/.chimerc```
-``` cp .env.example ~/.chimerc ```
+*   ``` cp .env.example ~/.chimerc ```
    
 Regions
 -------
