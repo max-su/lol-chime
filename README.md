@@ -14,7 +14,7 @@ chime <%= INSERT IGN HERE %>
 
 Dependencies
 --------
-
+*   Please install [Node.js & NPM](https://nodejs.org/en/download/) if you haven't already! 
 *   We require mplayer to run the audio chime in node. (If you don't install it, that's okay but you might not get the audio chime!)
 *   In Ubuntu run
 ```
