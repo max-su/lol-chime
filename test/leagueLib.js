@@ -1,9 +1,9 @@
 var assert = require("assert");
 var process = require("process");
 var config = require("home-config").load(".chimerc", {
-    APIKEY: "746869736973616e6170696b6579",
-    REGION: "NA",
-    REFRESHRATE: 30
+    APIKEY: process.env.APIKEY,
+    REGION: process.env.REGION,
+    REFRESHRATE: process.env.REFRESHRATE
 });
 
 var leagueLib = require("../leagueLib/leagueLib.js");
