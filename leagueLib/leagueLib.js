@@ -9,6 +9,16 @@ if (typeof config.APIKEY === "undefined") {
     process.exit(1);
 }
 
+if (typeof config.REGION === "undefined") {
+    console.log("[!] Region not set.");
+    process.exit(1);
+}
+
+if (typeof config.REFRESHRATE === "undefined") {
+    console.log("[!] Refresh rate not defined.");
+    process.exit(1);
+}
+
 var player = require("play-sound")(opts={});
 var request = require("request");
 var SummonerEmitter = require("./SummonerEmitter");
