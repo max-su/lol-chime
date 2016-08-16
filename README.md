@@ -9,7 +9,7 @@ Use
 --------
 *   Run in a terminal
 ```
-chime <%= INSERT IGN HERE %>
+chime <IGN>
 ```
 ```
 chime boostedAnimal
@@ -60,7 +60,7 @@ npm install lol-chime -g
 Are You On Windows? (Config)
 --------
 
-*   Open up notepad and save an empty text file(we'll fit it in later) as ```C:\Users\<%= YOUR USER %>\.chimerc```, as an example my personal user on Windows is ```C:\Users\Max```
+*   Open up notepad and save an empty text file(we'll fit it in later) as ```C:\Users\<USERNAME>\.chimerc```, as an example my personal user on Windows is ```C:\Users\Max```
 *   Sign in on your league of legends account on [the Riot Games developer portal](https://developer.riotgames.com/sign-in) and grab an API key if you haven't already!
 *   Open up notepad and copy over the text from [.chimerc](./.chimerc)
 
@@ -76,13 +76,21 @@ cd ~ && wget https://raw.githubusercontent.com/max-su/lol-chime/master/.chimerc
 What Do We Fill In? (Config for OSX/Windows/Linux) 
 ---------
 *   Open up your favorite text editor for .chimerc and
-*   Replace ```<%= FILL IN API KEY HERE %>``` with your api key.
-*   Replace ```<%= FILL IN REGION CODE HERE %>``` with your region code(see the following section).
-*   Replace ```<%= FILL IN REFRESH RATE %>``` with how often time interval(seconds) you want to refresh.
+*   Set ```APIKEY``` to your api key.
+*   Set ```REGION``` to your region code (see the following section).
+*   Set ```REFRESHRATE``` to how often you want to refresh (in seconds).
 *   We recommend a refresh rate of 2 to 10 to keep in line with Riot's allotted limit:
 *   10 requests every 10 seconds
 *   500 requests every 10 minutes
 *   Please keep in mind you do not need to put quotation marks around these strings or numbers!
+
+    Example:
+
+    ```
+    APIKEY=my_api_key
+    REGION=NA
+    REFRESHRATE=5
+    ```
 
 Regions
 --------
