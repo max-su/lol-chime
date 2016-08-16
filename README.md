@@ -16,39 +16,77 @@ chime boostedAnimal
 *   Would be a query for the summoner boostedAnimal in whatever region you specify in the config file. 
 *   Please keep in mind that Live Game data for 'Bot' cannot be retrieved from Riot’s official API.
 
-Dependencies
+#Installation
+
+Are you On Windows?
 --------
 *   Please install [Node.js & NPM](https://nodejs.org/en/download/) if you haven't already! 
-*   We require mplayer to run the audio chime in node. (If you don't install it, that's okay but you might not get the audio chime!)
-*   In Ubuntu run
+*   We require [mplayer](https://sourceforge.net/projects/mplayerwin/) to run the audio chime in node. (If you don't install it, that's okay but you might not get the audio chime!)
+*   Open up CMD and run 
 ```
-sudo apt-get install mplayer
+setx MYPATH "%PATH%;C:\Program Files (x86)\MPlayer for Windows"
 ```
-*   Mplayer installation for [OSX](https://sourceforge.net/projects/mplayerosx/) & [Windows](https://sourceforge.net/projects/mplayerwin/)
-*   Open up terminal and run
+*   Also run
 ```
 npm install lol-chime -g
 ```
+*   Move on over to the [config section](https://github.com/max-su/lol-chime#config)
 
-Config
+Are you On OSX?
 --------
+*   Please install [Node.js & NPM](https://nodejs.org/en/download/) if you haven't already! 
+*   We require [mplayer](https://sourceforge.net/projects/mplayerwin/) to run the audio chime in node. (If you don't install it, that's okay but you might not get the audio chime!)
+*   Open up terminal and run 
+```
+npm install lol-chime -g
+```
+*   Move on over to the [config section](https://github.com/max-su/lol-chime#config)
+
+Are you On Linux?
+--------
+*   linux master race kek
+*   Please install [Node.js & NPM](https://nodejs.org/en/download/package-manager/) if you haven't already!
+*   We require mplayer to run the audio chime in node. (If you don't install it, that's okay but you might not get the audio chime!)
+*   Open up terminal and run this to install mplayer
+```
+sudo apt-get install mplayer
+```
+*   Open up terminal and run this to install the npm module
+```
+npm install lol-chime -g
+```
+*   Move on over to the [config section](https://github.com/max-su/lol-chime#config)
+
+Are You On Windows? (Config)
+--------
+
+*   Open up notepad and save an empty text file(we'll fit it in later) as ```C:\Users\<%= YOUR USER %>\.chimerc```, as an example my personal user on Windows is ```C:\Users\Max```
 *   Sign in on your league of legends account on [the Riot Games developer portal](https://developer.riotgames.com/sign-in) and grab an API key if you haven't already!
-*   In this repository's root directory, do
+*   Open up notepad and copy over the text from [.chimerc](./.chimerc)
+
+
+Are You On Linux/OSX? (Config)
+--------
+*   Open up terminal and run
 ```
-vim .env.example
-```
-*   replace ```<%= FILL IN API KEY HERE %>``` with your api key.
-*   replace ```<%= FILL IN REGION CODE HERE %>``` with your region code(see the following section).
-*   replace ```<%= FILL IN REFRESH RATE %>``` with how often time interval(seconds) you want to refresh.
-*   We recommend a refresh rate of 2 to 10 to keep in line with Riot's allotted limit.
+cd ~ && wget https://raw.githubusercontent.com/max-su/lol-chime/master/.chimerc
+```  
+*   Type in mplayer to make sure the command exists! I don't have a Mac so I'm not sure if you would have to do any shenanigans for pathing there :*( sorry.
+*   Sign in on your league of legends account on [the Riot Games developer portal](https://developer.riotgames.com/sign-in) and grab an API key if you haven't already!
+
+What Do We Fill In? (Config for OSX/Windows/Linux) 
+---------
+*   Open up your favorite text editor for .chimerc and
+*   Replace ```<%= FILL IN API KEY HERE %>``` with your api key.
+*   Replace ```<%= FILL IN REGION CODE HERE %>``` with your region code(see the following section).
+*   Replace ```<%= FILL IN REFRESH RATE %>``` with how often time interval(seconds) you want to refresh.
+*   We recommend a refresh rate of 2 to 10 to keep in line with Riot's allotted limit:
 *   10 requests every 10 seconds
 *   500 requests every 10 minutes
 *   Please keep in mind you do not need to put quotation marks around these strings or numbers!
-*   Finally copy over the example to the actual ```~/.chimerc```
-*   ``` cp .env.example ~/.chimerc ```
-   
+
 Regions
--------
+--------
 *   BR
 *   EUNE
 *   EUW
