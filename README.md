@@ -25,6 +25,10 @@ Dependencies
 sudo apt-get install mplayer
 ```
 *   Mplayer installation for [OSX](http://www.techspot.com/downloads/695-mplayerosx-for-mac.html) & [Windows](http://www.techspot.com/downloads/5141-mplayer-for-windows.html)
+*   For Windows Users, add mplayer to your path for executables and stuffers.
+```
+setx MYPATH "%PATH%;C:\Program Files (x86)\MPlayer for Windows"
+```
 *   Open up terminal and run
 ```
 npm install lol-chime -g
@@ -45,7 +49,10 @@ vim .env.example
 *   500 requests every 10 minutes
 *   Please keep in mind you do not need to put quotation marks around these strings or numbers!
 *   Finally copy over the example to the actual ```~/.chimerc```
+*   On Linux/OSX, you can do
 *   ``` cp .env.example ~/.chimerc ```
+*   On Windows, you can copy the text in [.env.example](./env.example) and post it in Notepad and save to your root user directory
+*   So for me(Max) I would be saving it into ```C:\Users\Max```
    
 Regions
 -------
