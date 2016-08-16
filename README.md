@@ -30,7 +30,7 @@ setx MYPATH "%PATH%;C:\Program Files (x86)\MPlayer for Windows"
 ```
 npm install lol-chime -g
 ```
-*   Move on over to the [config section](https://github.com/max-su/lol-chime#config)
+*   Move on over to the [config section](https://github.com/max-su/lol-chime#are-you-on-windows-config)
 
 Are you On OSX?
 --------
@@ -40,7 +40,7 @@ Are you On OSX?
 ```
 npm install lol-chime -g
 ```
-*   Move on over to the [config section](https://github.com/max-su/lol-chime#config)
+*   Move on over to the [config section](https://github.com/max-su/lol-chime#are-you-on-linuxosx-config)
 
 Are you On Linux?
 --------
@@ -54,7 +54,7 @@ sudo apt-get install mplayer
 ```
 npm install lol-chime -g
 ```
-*   Move on over to the [config section](https://github.com/max-su/lol-chime#config)
+*   Move on over to the [config section](https://github.com/max-su/lol-chime#are-you-on-linuxosx-config)
 
 Are You On Windows? (Config)
 --------
