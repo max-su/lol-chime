@@ -3,6 +3,7 @@
 Summary
 --------
 A terminal utility serving the League of Legends community that runs client side and notifies them when their friends are finished with their game. 
+For web app version go [here](https://github.com/max-su/lol-chime-web).
 
 Use
 --------
