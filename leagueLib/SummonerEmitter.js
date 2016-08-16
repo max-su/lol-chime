@@ -6,9 +6,9 @@ function SummonerEmitter(name, region){
     EventEmitter.call(this); //inheriting EventEmitter
     this.name = name;
     this.region = region;
-    this.ID = 0;
+    this.ID = -1;
     this.state = "";
-    this.gameLength = 0;
+    this.gameLength = -1;
     this.gameMode = "";
     this.gameType = "";
     this.init = false;
@@ -86,7 +86,7 @@ SummonerEmitter.prototype.setGameLength = function(gameLength) {
 };
 
 SummonerEmitter.prototype.getGameLength = function() {
-    if (this.gameLength === 0) {
+    if (this.gameLength === -1) {
         console.log("There is an error, gameLength is not set.");
     }
     return this.gameLength;
@@ -107,7 +107,7 @@ SummonerEmitter.prototype.getGameType = function() { //static
 };
 
 SummonerEmitter.prototype.getGameStartTime = function() {//static
-    if (this.gameStartTime === 0) {
+    if (this.gameStartTime === "") {
         console.log("There is an error, gameStartTime is not set.");
     }
     return this.gameStartTime;
