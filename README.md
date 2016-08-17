@@ -66,6 +66,7 @@ Are You On Windows? (Config)
 *   Open up notepad and save an empty text file(we'll fit it in later) as ```C:\Users\<USERNAME>\.chimerc```, as an example my personal user on Windows is ```C:\Users\Max```
 *   Sign in on your league of legends account on [the Riot Games developer portal](https://developer.riotgames.com/sign-in) and grab an API key if you haven't already!
 *   Open up notepad and copy over the text from [.chimerc](./.chimerc)
+*   Make sure the file name is only ```.chimerc``` not ```.chimerc.txt```, if you need additional help doing this please look [here](https://gist.github.com/ozh/4131243)
 
 Are You On Linux/OSX? (Config)
 --------
