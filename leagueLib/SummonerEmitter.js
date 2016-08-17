@@ -23,27 +23,27 @@ SummonerEmitter.constructor = SummonerEmitter;
 
 SummonerEmitter.prototype.setChampion = function(champion) {
     this.champion = champion;
-}
+};
 
 SummonerEmitter.prototype.getChampion = function() {
     return this.champion;
-}
+};
 
 SummonerEmitter.prototype.setMap = function(map) {
     this.map = map;
-}
+};
 
 SummonerEmitter.prototype.getMap = function() {
     return this.map;
-}
+};
 
 SummonerEmitter.prototype.setQueueType = function(queueType) {
     this.queueType = queueType;
-}
+};
 
 SummonerEmitter.prototype.getQueueType = function() {
     return this.queueType;
-}
+};
 
 SummonerEmitter.prototype.getName = function() {
     return this.name;
@@ -83,6 +83,7 @@ SummonerEmitter.prototype.getState = function() {
 //the below are all static with the exception of game Length which is the only one that should be updated.
 SummonerEmitter.prototype.setGameLength = function(gameLength) {
     this.gameLength = (gameLength / 60);
+    this.gameLength = this.gameLength.toString().substring(0,6);
 };
 
 SummonerEmitter.prototype.getGameLength = function() {
@@ -143,7 +144,7 @@ SummonerEmitter.prototype.printSummary = function() {
     console.log("[*] Game Type: " + gameType);
     console.log("[*] Game Mode: " + gameMode);
     console.log("[*] Queue Type: " + queueType);
-    console.log("[*] Map: " + map)
+    console.log("[*] Map: " + map);
 };
 
 module.exports = SummonerEmitter;
