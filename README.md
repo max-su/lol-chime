@@ -27,6 +27,7 @@ Are you On Windows?
 ```
 setx MYPATH "%PATH%;C:\Program Files (x86)\MPlayer for Windows"
 ```
+*   In CMD, type in ```mplayer``` and hit enter a blur of text should roll by, as long as it runs without a command not found, you're good to go!
 *   Also run
 ```
 npm install lol-chime -g
@@ -37,6 +38,7 @@ Are you On OSX?
 --------
 *   Please install [Node.js & NPM](https://nodejs.org/en/download/) if you haven't already! 
 *   We require [mplayer](https://sourceforge.net/projects/mplayerwin/) to run the audio chime in node. (If you don't install it, that's okay but you might not get the audio chime!)
+*   Open up terminal and type in ```mplayer``` and hit enter a blur of text should roll by, as long as it runs without a command not found, you're good to go!
 *   Open up terminal and run 
 ```
 npm install lol-chime -g
@@ -52,6 +54,7 @@ Are you On Linux?
 ```
 sudo apt-get install mplayer
 ```
+*   Also run
 ```
 npm install lol-chime -g
 ```
@@ -70,7 +73,6 @@ Are You On Linux/OSX? (Config)
 ```
 cd ~ && wget https://raw.githubusercontent.com/max-su/lol-chime/master/.chimerc
 ```  
-*   Type in mplayer to make sure the command exists! I don't have a Mac so I'm not sure if you would have to do any shenanigans for pathing there :*( sorry.
 *   Sign in on your league of legends account on [the Riot Games developer portal](https://developer.riotgames.com/sign-in) and grab an API key if you haven't already!
 
 What Do We Fill In? (Config for OSX/Windows/Linux) 
