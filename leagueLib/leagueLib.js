@@ -180,7 +180,7 @@ module.exports.initializeEvents = function(SEArg) {
     SEArg.on("Game Not Found", function() {
         //if the game is found, conclude the game, else no summary.
         if (SEArg.getInit()) {
-            module.exports.beep();
+            module.exports.chime();
             SEArg.printSummary();
             SEArg.printCurrentGame();
             console.log("[*] The game has ended.");
@@ -197,7 +197,7 @@ module.exports.initializeEvents = function(SEArg) {
     SEArg.emit("Not Initialized");
 };
 
-module.exports.beep = function() {
+module.exports.chime = function() {
     player.play(__dirname + "/bard.mp3", function(err) {
         if (err) {
             console.log("[*] Could not play audio.");
