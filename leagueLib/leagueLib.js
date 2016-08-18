@@ -194,7 +194,10 @@ module.exports.initializeEvents = function(SEArg) {
         }
     });
     SEArg.on("Rate limited", function() {
-        console.log("[!] Slow down!");
+        console.log("[!] The API rate limit has been reached. Waiting for " + config.REFRESHRATE + "s");
+        setTimeout(function() {
+            module.exports.checkSummonerInGame(SEArg);
+        }, config.REFRESHRATE*1000);
     });
     SEArg.emit("Not Initialized");//could be made more efficient, dont have to listen for Not init  and just start checkSummonerExists.
 };
