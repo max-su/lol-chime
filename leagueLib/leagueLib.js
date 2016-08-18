@@ -22,12 +22,7 @@ if (typeof config.REFRESHRATE === "undefined") {
 var player = require("play-sound")(opts={});
 var request = require("request");
 var SummonerEmitter = require("./SummonerEmitter");
-module.exports = {}; //prepping exports
-/*USAGE for getUrl(typeOfCall, region, id)
- *typeOfCall = summonerLookup OR gameLookup
- *region = na, eu, etc.
- *id = summonerName OR summonerID
- */
+module.exports = {};
 
 var getUrl = function(typeOfCall, region, id) {
     result = "https://" + region + ".api.pvp.net/";
@@ -118,7 +113,7 @@ module.exports.checkSummonerInGame = function(SEArg) {
         if (!error && response.statusCode === 200) { //GAME FOUND
             SEArg.setGameLength(body.gameLength);
 
-            if (SEArg.getInit() === false) {
+            if (!SEArg.getInit()) {
                 //So we dont keep reInitializing these variables.
                 SEArg.setInitial(body.gameMode, body.gameType, body.gameStartTime, body.gameQueueConfigId, body.mapId);
 
@@ -184,7 +179,7 @@ module.exports.initializeEvents = function(SEArg) {
     });
     SEArg.on("Game Not Found", function() {
         //if the game is found, conclude the game, else no summary.
-        if (SEArg.getInit() === true) {
+        if (SEArg.getInit()) {
             module.exports.beep();
             SEArg.printSummary();
             SEArg.printCurrentGame();
@@ -199,7 +194,7 @@ module.exports.initializeEvents = function(SEArg) {
             module.exports.checkSummonerInGame(SEArg);
         }, config.REFRESHRATE*1000);
     });
-    SEArg.emit("Not Initialized");//could be made more efficient, dont have to listen for Not init  and just start checkSummonerExists.
+    SEArg.emit("Not Initialized");
 };
 
 module.exports.beep = function() {
