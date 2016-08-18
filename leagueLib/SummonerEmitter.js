@@ -94,7 +94,7 @@ SummonerEmitter.prototype.getGameLength = function() {
 };
 
 SummonerEmitter.prototype.getGameMode = function() { //static
-    if (this.gameType === "") {
+    if (this.gameMode === "") {
         console.log("There is an error, gameMode is not set.");
     }
     return this.gameMode;
