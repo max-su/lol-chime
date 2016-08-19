@@ -3,8 +3,6 @@
 요약 
 --------
 Lol Chime 은 사용자들에게 그들의 친구가 게임이 끝났음을 알려주는 ‘리그 오브 레전드’의 터미널 유틸리티이다. 웹 어플 버젼 열람 위해 [여기](https://github.com/max-su/lol-chime-web) 를 클릭. 
-A terminal utility serving the League of Legends community that runs client side and notifies them when their friends are finished with their game. 
-For web app version go [here].
 
 이용
 --------
@@ -64,7 +62,6 @@ npm install lol-chime -g
 
 Windows 사용시 (구성파일) 
 --------
-*   Open up notepad and save an empty text file(we'll fit it in later) as ```C:\Users\<USERNAME>\.chimerc```, as an example my personal user on Windows is ```C:\Users\Max```
 *   노트패드를 열고 다음과 같은 공 텍스트 파일을 만듬: ```C:\Users\<USERNAME>\.chimerc```
 *   예를 들어 필자의 퍼스너 유저는:```C:\Users\<USERNAME>\.chimerc 임```
 *   [The Riot Games developer portal](https://developer.riotgames.com/sign-in) 에서 리그 오브 레전드 계정에 로그인하고 API 키를 발급받음. 
