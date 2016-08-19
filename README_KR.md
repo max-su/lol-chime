@@ -78,7 +78,7 @@ cd ~ && wget https://raw.githubusercontent.com/max-su/lol-chime/master/.chimerc
 ```  
 *   [The Riot Games developer portal](https://developer.riotgames.com/sign-in) 에서 리그 오브 레전드 계정에 로그인하고 API 키를 발급받음. 
 
-What Do We Fill In? (Config for OSX/Windows/Linux) 
+입력 (OSX/Windows/Linux 구성파일) 
 ---------
 *   ```.chimerc``` 파일을 사용 위해 사용자가 익히 쓰던 텍스트 에디터를 열고  
 *   지역코드에 ```APIKEY``` 을 설정 (다음 섹션 참조) 
