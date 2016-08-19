@@ -46,7 +46,7 @@ npm install lol-chime -g
 
 Linux 사용시 
 --------
-*   linux 마스터 게임ㅋ (linux master race kek)
+*   linux 마스터 게임ㅋ kek  ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
 *   [Node.js & NPM](https://nodejs.org/en/download/package-manager/) 를 설치 
 *   노드에서 차임벨 오디오를 실행하기 위해mplayer 가 필요 (설치하지 않을 시 오디오가 들리지 않을 수 있음!) 
 *   터미널을 열고 mplayer 설치를 위해
