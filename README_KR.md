@@ -121,4 +121,4 @@ Lol-Chime 은 Riot Games에서 보증된 프로그램이 아니며 Riot Games �
 
 Credits
 -------
-Thank you so much for helping me translate this Sue :>
+Thank you so much for helping me translate this Sue :>  네가 최고야  
