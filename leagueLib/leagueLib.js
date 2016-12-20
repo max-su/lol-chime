@@ -1,4 +1,4 @@
-//"use strict";
+"use strict";
 var config = require("home-config").load(".chimerc", {
     APIKEY: process.env.APIKEY,
     REGION: process.env.REGION,
@@ -21,7 +21,7 @@ if (typeof config.REFRESHRATE === "undefined") {
     process.exit(1);
 }
 
-var player = require("play-sound")(opts={});
+var player = require("play-sound");
 var request = require("request");
 var SummonerEmitter = require("./SummonerEmitter");
 
@@ -195,7 +195,7 @@ module.exports = {
 
         SEArg.on("Game Found", function() {
             SEArg.printCurrentGame();
-            callBackMS = config.REFRESHRATE * 1000; //seconds to MS for setTimeOut
+            var callBackMS = config.REFRESHRATE * 1000; //seconds to MS for setTimeOut
             setTimeout(function() {
                 checkSummonerInGame(SEArg);
             }, callBackMS);
