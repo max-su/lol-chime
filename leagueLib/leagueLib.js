@@ -1,9 +1,11 @@
+//"use strict";
 var config = require("home-config").load(".chimerc", {
     APIKEY: process.env.APIKEY,
     REGION: process.env.REGION,
     REFRESHRATE: process.env.REFRESHRATE
 });
 
+//
 if (typeof config.APIKEY === "undefined") {
     console.log("[!] API key not found.");
     process.exit(1);
@@ -22,10 +24,9 @@ if (typeof config.REFRESHRATE === "undefined") {
 var player = require("play-sound")(opts={});
 var request = require("request");
 var SummonerEmitter = require("./SummonerEmitter");
-module.exports = {};
 
 var getUrl = function(typeOfCall, region, id) {
-    result = "https://" + region + ".api.pvp.net/";
+    var result = "https://" + region + ".api.pvp.net/";
     switch (typeOfCall) {
         case "summonerLookUp":
             result += "api/lol/" + region + "/v1.4/summoner/by-name/";
@@ -79,11 +80,14 @@ var getRegionID = function(region) {
     }
 };
 
+/*
 module.exports.cleanSummonerName = cleanSummonerName;
 module.exports.getUrl = getUrl;
 module.exports.getRegionID = getRegionID;
+Don't think we need to export helpers
+*/
 
-module.exports.checkSummonerExists = function(SEArg) { //SEArg == SummonerEmitterArg
+var checkSummonerExists = function(SEArg) { //SEArg == SummonerEmitterArg
     if (SEArg instanceof SummonerEmitter) {
         request({
             url: getUrl("summonerLookUp", SEArg.getRegion(), SEArg.getName()),
@@ -95,26 +99,27 @@ module.exports.checkSummonerExists = function(SEArg) { //SEArg == SummonerEmitte
                 var id = body[cleanSummonerName(name)].id;
                 SEArg.setID(id);
                 SEArg.setEmitState("ID Found");
-            } else if (!error && response.statusCode === 429) { // Rate limited by the API
+            } 
+            else if (!error && response.statusCode === 429) { // Rate limited by the API
                 SEArg.setEmitState("Rate limited");
-            } else {
+            } 
+            else {
                 SEArg.setEmitState("ID Not Found");
             }
         });
     }
 };
 
-module.exports.checkSummonerInGame = function(SEArg) {
+var checkSummonerInGame = function(SEArg) {
     request({
         url: getUrl("gameLookUp", SEArg.getRegion(), SEArg.getID()),
-        json: true
+        json: true //json flag to deserialize json and return body as an object
     },
     function(error, response, body) {
         if (!error && response.statusCode === 200) { //GAME FOUND
             SEArg.setGameLength(body.gameLength);
 
-            if (!SEArg.getInit()) {
-                //So we dont keep reInitializing these variables.
+            if (!SEArg.getInit()) { //initiliazing object instance, send general data of player to STDOUT
                 SEArg.setInitial(body.gameMode, body.gameType, body.gameStartTime, body.gameQueueConfigId, body.mapId);
 
                 var championID;
@@ -123,11 +128,12 @@ module.exports.checkSummonerInGame = function(SEArg) {
                         championID = body.participants[participant].championId;
                     }
                 }
-                if (typeof championID === "undefined") {
+                if (typeof championID === "undefined") { //handling case of new champion we didn't add
                     console.log("[*] Could not get champion ID.");
                     SEArg.printSummary();
                     SEArg.setEmitState("Game Found");
-                } else {
+                } 
+                else {
                     request({
                         url: getUrl("championLookUp", SEArg.getRegion().toLowerCase(), championID),
                         json: true
@@ -145,62 +151,81 @@ module.exports.checkSummonerInGame = function(SEArg) {
                         SEArg.setEmitState("Game Found");
                     });
                 }
-            } else {
+            } 
+            else {
                 SEArg.setEmitState("Game Found");
             }
-        } else if (!error && response.statusCode === 404) { //NO GAME FOUND
+        } 
+        else if (!error && response.statusCode === 404) { //NO GAME FOUND
             SEArg.setEmitState("Game Not Found");
-        } else if (!error && response.statusCode === 429) { // Rate limited by the API
-            SEArg.setEmitState("Rate limited");
-        } else {
+        } 
+        else if (!error && response.statusCode === 429) { // Rate limited by the API
+            SEArg.setEmitState("Rate Limited");
+        } 
+        else {
             SEArg.setEmitState("Server Sucks");
         }
     });
 };
 
-module.exports.initializeEvents = function(SEArg) {
-    SEArg.on("Not Initialized", function() {
-        console.log("[*] Looking up summoner " + SEArg.getName());
-        module.exports.checkSummonerExists(SEArg);
-    });
-    SEArg.on("ID Found", function() {
-        console.log("[*] Summoner found! Checking if the player is in game.");
-        module.exports.checkSummonerInGame(SEArg);
-    });
-    SEArg.on("ID Not Found", function() {
-        console.log("[*] Summoner was not found.");
-    });
-    SEArg.on("Game Found", function() {
-        SEArg.printCurrentGame();
-        callBackMS = config.REFRESHRATE * 1000; //seconds to MS for setTimeOut
-        setTimeout(function() {
-            module.exports.checkSummonerInGame(SEArg);
-        }, callBackMS);
-    });
-    SEArg.on("Game Not Found", function() {
-        //if the game is found, conclude the game, else no summary.
-        if (SEArg.getInit()) {
-            module.exports.chime();
-            SEArg.printSummary();
-            SEArg.printCurrentGame();
-            console.log("[*] The game has ended.");
-        } else {
-            console.log("[*] A game has not been found.");
-        }
-    });
-    SEArg.on("Rate limited", function() {
-        console.log("[!] The API rate limit has been reached. Waiting for " + config.REFRESHRATE + "s");
-        setTimeout(function() {
-            module.exports.checkSummonerInGame(SEArg);
-        }, config.REFRESHRATE*1000);
-    });
-    SEArg.emit("Not Initialized");
+var chime = function() { 
+        player.play(__dirname + "/bard.mp3", function(err) {
+            if (err) {
+                console.log("[*] Could not play audio.");
+            }
+        });
 };
 
-module.exports.chime = function() {
-    player.play(__dirname + "/bard.mp3", function(err) {
-        if (err) {
-            console.log("[*] Could not play audio.");
-        }
-    });
-};
+module.exports = {
+
+    initializeEvents: function(SEArg) {
+        SEArg.on("Not Initialized", function() {
+            console.log("[*] Looking up summoner " + SEArg.getName());
+            checkSummonerExists(SEArg);
+        });
+
+        SEArg.on("ID Found", function() {
+            console.log("[*] Summoner found! Checking if the player is in game.");
+            checkSummonerInGame(SEArg);
+        });
+
+        SEArg.on("ID Not Found", function() {
+            console.log("[*] Summoner was not found.");
+        });
+
+        SEArg.on("Game Found", function() {
+            SEArg.printCurrentGame();
+            callBackMS = config.REFRESHRATE * 1000; //seconds to MS for setTimeOut
+            setTimeout(function() {
+                checkSummonerInGame(SEArg);
+            }, callBackMS);
+        });
+
+        SEArg.on("Game Not Found", function() {
+            //if the game is found, conclude the game, else no summary.
+            if (SEArg.getInit()) {
+                chime();
+                SEArg.printSummary();
+                SEArg.printCurrentGame();
+                console.log("[*] The game has ended.");
+            } else {
+                console.log("[*] A game has not been found.");
+            }
+        });
+
+        SEArg.on("Rate Limited", function() {
+            console.log("[!] The API rate limit has been reached. Waiting for " + config.REFRESHRATE + "s.");
+            setTimeout(function() {
+                checkSummonerInGame(SEArg);
+            }, config.REFRESHRATE*1000);
+        });
+
+        SEArg.on("Server Sucks", function() {
+            console.log("World exploded or something.");
+            process.exit(1);
+        });
+
+        SEArg.emit("Not Initialized");
+    }
+
+}
