@@ -226,6 +226,10 @@ module.exports = {
         });
 
         SEArg.emit("Not Initialized");
-    }
+    },
+    //although these aren't strictly necessary for user functionality, export anyway for testing purpos
+    cleanSummonerName : cleanSummonerName,
+    getRegionID : getRegionID,
+    getUrl : getUrl
 
 }

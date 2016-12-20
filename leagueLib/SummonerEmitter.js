@@ -1,3 +1,4 @@
+"use strict";
 var constants = require("./constants.js");
 var EventEmitter = require("events");
 var util = require("util");
@@ -17,9 +18,8 @@ function SummonerEmitter(name, region){
     this.map = "";
 }
 
-util.inherits(SummonerEmitter, EventEmitter); //inherit the prototype methods from EventEmitter to summonerEmitter
 SummonerEmitter.prototype = Object.create(EventEmitter.prototype);
-SummonerEmitter.constructor = SummonerEmitter;
+SummonerEmitter.prototype.constructor = SummonerEmitter;
 
 SummonerEmitter.prototype.setChampion = function(champion) {
     this.champion = champion;
